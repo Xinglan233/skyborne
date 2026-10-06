@@ -22,6 +22,26 @@ def _json(path):
         return {}
 
 
+def tidy(path):
+    """A path for output people paste into bug reports: the home folder (and with it the user name) shows as ~."""
+    text = str(path)
+    try:
+        home = pathlib.Path.home()
+        bases = {str(home), str(home.resolve())}
+    except (RuntimeError, OSError):  # no home folder to find (some containers): nothing to hide
+        return text
+    for base in bases:
+        if os.path.normcase(text) == os.path.normcase(base):
+            return '~'
+        if os.path.normcase(text).startswith(os.path.normcase(base + os.sep)):
+            return '~' + text[len(base):]
+    return text
+
+
+def _dict(value):
+    return value if isinstance(value, dict) else {}
+
+
 def managed_settings_path():
     system = platform.system()
     if system == 'Darwin':
@@ -74,9 +94,9 @@ def checks(port=config.DEFAULT_PORT):
     if not (target / '.claude-plugin' / 'plugin.json').exists():
         out.append((FAIL, f'The plugin is not installed. Run `skyborne install`.'))
     elif not marker:
-        out.append((WARN, f'{target} exists but was not installed by Skyborne.'))
+        out.append((WARN, f'{tidy(target)} exists but was not installed by Skyborne.'))
     else:
-        out.append((OK, f'The plugin is installed in {target}.'))
+        out.append((OK, f'The plugin is installed in {tidy(target)}.'))
         if marker.get('port') != port:
             out.append((WARN, f"The plugin sends to port {marker.get('port')}, not {port}. Run `skyborne install --port {port}` to change it."))
         installed = _json(target / 'hooks' / 'hooks.json')
@@ -88,7 +108,7 @@ def checks(port=config.DEFAULT_PORT):
 
     user = _json(config.claude_dir() / 'settings.json')
     managed = _json(managed_settings_path())
-    enabled = {**(user.get('enabledPlugins') or {}), **(managed.get('enabledPlugins') or {})}
+    enabled = {**_dict(user.get('enabledPlugins')), **_dict(managed.get('enabledPlugins'))}
     if enabled.get(f'{install.PLUGIN_NAME}@skills-dir') is False:
         out.append((FAIL, f'The plugin is turned off in settings (enabledPlugins "{install.PLUGIN_NAME}@skills-dir": false).'))
     for name, s in (('your settings', user), ('managed settings', managed)):
@@ -111,9 +131,9 @@ def checks(port=config.DEFAULT_PORT):
         with sqlite3.connect(config.db_path()) as db:
             db.execute('CREATE TABLE IF NOT EXISTS _doctor (x)')
             db.execute('DROP TABLE _doctor')
-        out.append((OK, f'The database can be written: {config.db_path()}.'))
+        out.append((OK, f'The database can be written: {tidy(config.db_path())}.'))
     except Exception as e:
-        out.append((FAIL, f'The database at {config.db_path()} cannot be written ({type(e).__name__}).'))
+        out.append((FAIL, f'The database at {tidy(config.db_path())} cannot be written ({type(e).__name__}).'))
 
     out.append((OK, 'Reminder: Claude Code runs hooks only after you accept the folder trust prompt.'))
     return out

@@ -31,7 +31,7 @@ labels: bug
 
 ## `skyborne doctor` output
 
-<!-- Run `.venv/bin/skyborne doctor` (on Windows, `.venv\Scripts\skyborne doctor`) and paste it. It can show folder paths with your user name; remove anything private. -->
+<!-- Run `.venv/bin/skyborne doctor` (on Windows, `.venv\Scripts\skyborne doctor`) and paste it. It shows your home folder as `~`; still, read it and remove anything private. -->
 
 ```
 ```

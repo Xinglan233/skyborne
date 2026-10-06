@@ -59,3 +59,44 @@ def test_doctor_notices_an_older_plugin_or_a_changed_timeout(app):
     old['hooks']['PermissionRequest'] = old['hooks']['PreToolUse']  # how an older Skyborne installed it
     hooks.write_text(json.dumps(old))
     assert 'older Skyborne' in run('doctor', '--port', str(app.port)).stdout.decode()
+
+
+def test_doctor_shows_the_home_folder_as_a_tilde(tmp_path, monkeypatch):
+    """Its output gets pasted into bug reports, so it must not carry the user name that home paths contain."""
+    home = tmp_path / 'alice-smith'
+    home.mkdir()
+    env = {'HOME': str(home), 'USERPROFILE': str(home), 'SKYBORNE_HOME': str(home / '.skyborne'), 'CLAUDE_CONFIG_DIR': str(home / '.claude')}
+    assert run('install', '--port', '1', '--no-statusline', env=env).returncode == 0
+    out = run('doctor', '--port', '1', env=env).stdout.decode()
+    assert 'alice-smith' not in out and str(tmp_path) not in out
+    assert f'The plugin is installed in ~{os.sep}.claude{os.sep}skills{os.sep}skyborne.' in out
+    assert f'The database can be written: ~{os.sep}.skyborne{os.sep}skyborne.db.' in out
+
+
+def test_tidy_only_touches_paths_inside_the_home_folder(tmp_path, monkeypatch):
+    from skyborne import doctor
+    home = tmp_path / 'bob'
+    home.mkdir()
+    for var in ('HOME', 'USERPROFILE'):
+        monkeypatch.setenv(var, str(home))
+    assert doctor.tidy(home) == '~'
+    assert doctor.tidy(home / 'x') == f'~{os.sep}x'
+    for outside in (tmp_path / 'elsewhere', tmp_path / 'bob2' / 'x'):  # bob2 only starts with the same letters
+        assert doctor.tidy(outside) == str(outside)
+
+
+def test_tidy_survives_a_missing_home_folder(tmp_path, monkeypatch):
+    from skyborne import doctor
+
+    def no_home():
+        raise RuntimeError('Could not determine home directory.')
+    monkeypatch.setattr(doctor.pathlib.Path, 'home', staticmethod(no_home))
+    assert doctor.tidy(tmp_path / 'x') == str(tmp_path / 'x')
+
+
+def test_doctor_copes_with_a_settings_file_that_has_the_wrong_shape(app):
+    from skyborne import config
+    config.claude_dir().mkdir(parents=True, exist_ok=True)
+    (config.claude_dir() / 'settings.json').write_text(json.dumps({'enabledPlugins': ['skyborne']}))
+    r = run('doctor', '--port', str(app.port))
+    assert r.returncode in (0, 1) and b'Traceback' not in r.stderr
