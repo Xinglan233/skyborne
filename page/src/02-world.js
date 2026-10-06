@@ -286,13 +286,15 @@ function dustRing(p, color = 0xd8cfc0, n = 40, r = 2, q = null) {
 
 // ---- light beams (spawn / leave) and energy arcs (needs the Mayor, helper tethers) ----
 const beamGeo = new THREE.CylinderGeometry(1, 1, 1, 32, 1, true).translate(0, 0.5, 0);
+// fade is clamped: interpolation can pass 1.0 at the top edge, and pow of a negative number is NaN, which the
+// bloom spreads over the whole frame (black, on real graphics cards)
 function makeBeam(color) {
   const m = new THREE.ShaderMaterial({
     uniforms: { color: { value: new THREE.Color(color) }, opacity: { value: 0 }, time: clockT },
     transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, toneMapped: false,
     vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
     fragmentShader: `uniform vec3 color; uniform float opacity; uniform float time; varying vec2 vUv;
-      void main(){ float fade = pow(1.0 - vUv.y, 1.6); float bands = 0.65 + 0.35 * sin(vUv.y * 40.0 - time * 9.0);
+      void main(){ float fade = pow(max(1.0 - vUv.y, 0.0), 1.6); float bands = 0.65 + 0.35 * sin(vUv.y * 40.0 - time * 9.0);
         gl_FragColor = vec4(color * 1.6, fade * bands * opacity); }`,
   });
   const mesh = new THREE.Mesh(beamGeo, m); mesh.renderOrder = 6; mesh.frustumCulled = false;

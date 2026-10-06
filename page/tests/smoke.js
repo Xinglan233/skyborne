@@ -6,7 +6,9 @@
 // within 5 s (15 s on CI), live and past sessions (6 live + 20 past), the inbox's order and clocks, desktop alerts, the top
 // numbers, a session's detail (timeline, steps, conversation, files, approvals, tokens), a bot's view, the
 // log's kinds and durations, the keys, Safe to film in every new view, and the console's speed with a
-// 2,500-step session. Fails on any page error, caught frame error, or any request that leaves 127.0.0.1.
+// 2,500-step session; and, on a page of its own, the first load (the 3D area never goes dark; no infinite or NaN pixels
+// in the drawn scene; SKYBORNE_GPU=1 draws with this machine's graphics card, which is what can show such a fault).
+// Fails on any page error, caught frame error, or any request that leaves 127.0.0.1.
 // Saves screenshots to dist/smoke.png, smoke-asks.png, smoke-detail.png, smoke-reel.png and smoke-60.png,
 // and the sign textures to dist/smoke-flag.png and dist/smoke-blimp.png.
 // Needs once:  npm ci && npx playwright install chromium
@@ -20,7 +22,10 @@ const dist = (f) => path.resolve(__dirname, '../dist', f);
 (async () => {
   const server = await start(0);
   const base = `http://127.0.0.1:${server.address().port}/`;
-  const browser = await chromium.launch({ args: ['--ignore-gpu-blocklist', '--enable-unsafe-swiftshader'] });
+  // SKYBORNE_GPU=1: draw with this machine's graphics card instead of software, which shows what software hides
+  // (a GPU-only black frame, below). Software drawing is the default, and the only choice on CI.
+  const gpuArgs = process.platform === 'darwin' ? ['--use-angle=metal', '--ignore-gpu-blocklist'] : ['--ignore-gpu-blocklist'];
+  const browser = await chromium.launch({ args: process.env.SKYBORNE_GPU === '1' ? gpuArgs : ['--ignore-gpu-blocklist', '--enable-unsafe-swiftshader'] });
   const context = await browser.newContext({ viewport: { width: 1280, height: 800 }, serviceWorkers: 'block' });
   // Skyborne is local only: any request off this machine fails the test (and is never sent)
   const offMachine = [];
@@ -39,6 +44,55 @@ const dist = (f) => path.resolve(__dirname, '../dist', f);
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
   page.on('console', (m) => { if (m.type() === 'error' && /Skyborne frame error|THREE\.WebGLProgram|Shader Error/.test(m.text())) errors.push(m.text()); }); // frame errors are caught and only logged; a shader that fails to build is only logged too
+  // First load, no mouse or key, on a page of its own (so the four questions below still count from opening the main
+  // page): the city is drawn and stays drawn. Once, the light beam's shader made a NaN pixel (pow of a negative
+  // number), which the bloom spread over the whole frame: black for seconds, on real graphics cards only. So the 3D
+  // area is never dark for three samples in a row once the boot screen has faded, and no pixel of the scene drawn
+  // the way the page draws it (half-float, 4x multisampled) is infinite or NaN. Software drawing clamps such
+  // values, so only SKYBORNE_GPU=1 can see the bug; the checks themselves run everywhere.
+  {
+    const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, serviceWorkers: 'block' });
+    await ctx.route((url) => url.hostname !== '127.0.0.1', (route) => { offMachine.push(route.request().url()); route.abort(); });
+    const p1 = await ctx.newPage();
+    p1.on('pageerror', (e) => errors.push(e.message));
+    await p1.goto(base);
+    await p1.waitForFunction(() => window.__skyborne?.city.status === 'live' && window.__skyborne.city.districts.size >= 5, null, { timeout: 60000 }).catch(() => {});
+    await p1.waitForFunction(() => getComputedStyle(document.getElementById('boot')).opacity === '0', null, { timeout: 60000 }).catch(() => {});
+    if (process.env.SKYBORNE_GPU === '1') {
+      const gpu = await p1.evaluate(() => { const gl = document.createElement('canvas').getContext('webgl'); const e = gl && gl.getExtension('WEBGL_debug_renderer_info'); return e ? gl.getParameter(e.UNMASKED_RENDERER_WEBGL) : 'unknown'; });
+      if (/swiftshader|llvmpipe|software/i.test(gpu)) errors.push('SKYBORNE_GPU=1 but the page is drawn in software: ' + gpu);
+    }
+    const lumaOf = async () => {
+      const png = await p1.screenshot({ clip: { x: 0, y: 100, width: 380, height: 500 } });
+      return p1.evaluate(async (b64) => {
+        const img = await createImageBitmap(await (await fetch('data:image/png;base64,' + b64)).blob());
+        const c = document.createElement('canvas'); c.width = img.width; c.height = img.height; const g = c.getContext('2d'); g.drawImage(img, 0, 0);
+        const d = g.getImageData(0, 0, c.width, c.height).data; let t = 0; for (let i = 0; i < d.length; i += 4) t += (d[i] + d[i + 1] + d[i + 2]) / 3;
+        return t / (d.length / 4);
+      }, png.toString('base64'));
+    };
+    const lumas = []; for (let i = 0; i < (process.env.SKYBORNE_GPU === '1' ? 12 : 4); i++) { lumas.push(Math.round(await lumaOf())); await p1.waitForTimeout(250); }
+    // three dark samples in a row (the real fault lasts seconds); a single empty frame in a software-drawn screenshot is a known harmless artifact
+    if (lumas.some((l, i) => i >= 2 && lumas.slice(i - 2, i + 1).every((x) => x < 60))) errors.push('The 3D area went dark on first load (mean brightness per sample): ' + lumas.join(' '));
+    for (let i = 0; i < 3; i++) {
+      const r = await p1.evaluate(() => {
+        const o = window.__skyborne, R = o.renderer, rt = o.composer.renderTarget1.clone();
+        rt.samples = 4; rt.setSize(o.composer.renderTarget1.width, o.composer.renderTarget1.height);
+        R.setRenderTarget(rt); R.render(o.scene, o.camera);
+        const w = rt.width, h = rt.height, px = new Uint16Array(w * h * 4); R.readRenderTargetPixels(rt, 0, 0, w, h, px); R.setRenderTarget(null); rt.dispose();
+        let bad = 0, lit = 0;
+        for (let k = 0; k < w * h; k++) {
+          if (px[k * 4] | px[k * 4 + 1] | px[k * 4 + 2]) lit++;
+          for (let j = 0; j < 3; j++) if (((px[k * 4 + j] >> 10) & 31) === 31) { bad++; break; }  // exponent bits all set: infinity or NaN
+        }
+        return { bad, lit };
+      });
+      if (!r.lit) { errors.push('The scene read-back was all zeros, so the infinite/NaN check saw nothing'); break; }
+      if (r.bad) { errors.push(`${r.bad} infinite or NaN pixels in the drawn scene`); break; }
+      await p1.waitForTimeout(400);
+    }
+    await ctx.close();
+  }
   await page.goto(base);
   const click = (sel) => page.evaluate((sel) => { document.querySelector(sel).click(); }, sel);
   const blur = () => page.evaluate(() => document.activeElement && document.activeElement.blur());
@@ -207,6 +261,9 @@ const dist = (f) => path.resolve(__dirname, '../dist', f);
   await page.keyboard.press('a'); await page.waitForTimeout(600);
   const w2 = await lastWrite();
   if (w2[0] !== 'answers/ask-1' || w2[1] !== 'allow') errors.push(`A did not approve the card in focus: ${JSON.stringify(w2)}`);
+  // an approved lead carries on, as in the real product: its district stops waiting on you
+  await page.waitForFunction(() => { const d = window.__skyborne.city.allDocs.get('p-forge'); return d && !d.waiting; }, null, { timeout: 15000 })
+    .catch(() => errors.push('pixel-forge still waits on you after its request was approved'));
   await page.evaluate((id) => document.querySelector(`[data-ask="${id}"]`).focus(), npmAsk);
   await page.keyboard.press('d'); await page.waitForTimeout(800);
   const w3 = await lastWrite();

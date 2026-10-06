@@ -8,6 +8,7 @@
 // and one with `late: 'after'` turns out to have been (told 0.8 s after the answer is sent).
 // A session's detail (GET /api/session on the real server) is built from the fake's own log, plus a canned
 // conversation, files and approvals carrying marker words ("XYZ", "secretco") that Safe to film must hide.
+// Answering a lead's request makes it carry on (it stops waiting), like the real product.
 // window.__fakeBig() adds a session with 2,500 steps; window.__fakeMany(live, past) swaps the city for that
 // many live and past sessions, one past one waiting on you.
 // atlas-api plays a ~40 s story on a loop so every bot moment can be seen: a helper beams in
@@ -180,6 +181,9 @@
       setTimeout(() => {
         asks = asks.filter((x) => x.id !== id);
         on?.answer({ id, session: a.session, agent: a.agent, decision, applied: a.late !== 'after' }); on?.asks(asks);
+        // once a lead's request is answered it carries on, as in the real product (the session stops waiting on you)
+        const s = a.agent === 'main' && S.find((x) => x.id === a.session);
+        if (s && s.waiting) { s.waiting = false; s.lead.status = 'working'; s.lead.kind = decision === 'allow' ? 'bash' : 'think'; on?.docs(docs()); }
       }, a.late === 'after' ? 800 : 600);
     },
     async detail(id) { const s = S.find((x) => x.id === id); if (!s) throw Object.assign(new Error('detail'), { code: 404 }); return detailOf(s); },

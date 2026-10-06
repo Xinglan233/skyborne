@@ -29,6 +29,7 @@ body{margin:0;background:#9fc3dd}[hidden]{display:none!important}
 // and one with `late: 'after'` turns out to have been (told 0.8 s after the answer is sent).
 // A session's detail (GET /api/session on the real server) is built from the fake's own log, plus a canned
 // conversation, files and approvals carrying marker words ("XYZ", "secretco") that Safe to film must hide.
+// Answering a lead's request makes it carry on (it stops waiting), like the real product.
 // window.__fakeBig() adds a session with 2,500 steps; window.__fakeMany(live, past) swaps the city for that
 // many live and past sessions, one past one waiting on you.
 // atlas-api plays a ~40 s story on a loop so every bot moment can be seen: a helper beams in
@@ -201,6 +202,9 @@ body{margin:0;background:#9fc3dd}[hidden]{display:none!important}
       setTimeout(() => {
         asks = asks.filter((x) => x.id !== id);
         on?.answer({ id, session: a.session, agent: a.agent, decision, applied: a.late !== 'after' }); on?.asks(asks);
+        // once a lead's request is answered it carries on, as in the real product (the session stops waiting on you)
+        const s = a.agent === 'main' && S.find((x) => x.id === a.session);
+        if (s && s.waiting) { s.waiting = false; s.lead.status = 'working'; s.lead.kind = decision === 'allow' ? 'bash' : 'think'; on?.docs(docs()); }
       }, a.late === 'after' ? 800 : 600);
     },
     async detail(id) { const s = S.find((x) => x.id === id); if (!s) throw Object.assign(new Error('detail'), { code: 404 }); return detailOf(s); },
@@ -1324,13 +1328,15 @@ function dustRing(p, color = 0xd8cfc0, n = 40, r = 2, q = null) {
 
 // ---- light beams (spawn / leave) and energy arcs (needs the Mayor, helper tethers) ----
 const beamGeo = new THREE.CylinderGeometry(1, 1, 1, 32, 1, true).translate(0, 0.5, 0);
+// fade is clamped: interpolation can pass 1.0 at the top edge, and pow of a negative number is NaN, which the
+// bloom spreads over the whole frame (black, on real graphics cards)
 function makeBeam(color) {
   const m = new THREE.ShaderMaterial({
     uniforms: { color: { value: new THREE.Color(color) }, opacity: { value: 0 }, time: clockT },
     transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, toneMapped: false,
     vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
     fragmentShader: `uniform vec3 color; uniform float opacity; uniform float time; varying vec2 vUv;
-      void main(){ float fade = pow(1.0 - vUv.y, 1.6); float bands = 0.65 + 0.35 * sin(vUv.y * 40.0 - time * 9.0);
+      void main(){ float fade = pow(max(1.0 - vUv.y, 0.0), 1.6); float bands = 0.65 + 0.35 * sin(vUv.y * 40.0 - time * 9.0);
         gl_FragColor = vec4(color * 1.6, fade * bands * opacity); }`,
   });
   const mesh = new THREE.Mesh(beamGeo, m); mesh.renderOrder = 6; mesh.frustumCulled = false;
@@ -5214,7 +5220,7 @@ resize();
 setInterval(() => { if (city.allDocs.size || prefs.samples) showDocs(); }, 5000);  // sessions age from live to past
 setInterval(() => { if (askUI.size && prefs.console) tickAsks(); }, 1000);
 ensureLoop(1); buildSkyTraffic();
-window.__skyborne = { mayorName, customLeadName, city, director, transit, selectDistrict, selectBot, overview, renderer, scene, camera, renderTokTip, playRecording, backToLive, audioState: () => actx && actx.state,
+window.__skyborne = { composer, mayorName, customLeadName, city, director, transit, selectDistrict, selectBot, overview, renderer, scene, camera, renderTokTip, playRecording, backToLive, audioState: () => actx && actx.state,
   // for the smoke tests: the pure helpers, and the console's own drawing
   isLive, isBusy, visibleDocs, layoutTimeline, fmtDur, detail, openDetail, closeDetail, showDocs, renderUI, drawLog, drawSteps, logRows: () => logRows };
 requestAnimationFrame(frame);

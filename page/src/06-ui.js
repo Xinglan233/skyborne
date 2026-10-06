@@ -927,7 +927,7 @@ resize();
 setInterval(() => { if (city.allDocs.size || prefs.samples) showDocs(); }, 5000);  // sessions age from live to past
 setInterval(() => { if (askUI.size && prefs.console) tickAsks(); }, 1000);
 ensureLoop(1); buildSkyTraffic();
-window.__skyborne = { mayorName, customLeadName, city, director, transit, selectDistrict, selectBot, overview, renderer, scene, camera, renderTokTip, playRecording, backToLive, audioState: () => actx && actx.state,
+window.__skyborne = { composer, mayorName, customLeadName, city, director, transit, selectDistrict, selectBot, overview, renderer, scene, camera, renderTokTip, playRecording, backToLive, audioState: () => actx && actx.state,
   // for the smoke tests: the pure helpers, and the console's own drawing
   isLive, isBusy, visibleDocs, layoutTimeline, fmtDur, detail, openDetail, closeDetail, showDocs, renderUI, drawLog, drawSteps, logRows: () => logRows };
 requestAnimationFrame(frame);
