@@ -2,6 +2,13 @@
 
 <h1 align="center">Skyborne</h1>
 
+<p align="center">
+  <a href="https://github.com/ishraq21/skyborne/actions/workflows/ci.yml"><img src="https://github.com/ishraq21/skyborne/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue" alt="License: Apache 2.0"></a>
+</p>
+
+<p align="center"><img src="docs/images/city-clip.gif" alt="A Skybot asks to run a command, the beam to City Hall turns green when it is approved, and the camera pulls back over the city" width="900"></p>
+
 Watch your Claude Code agents work, live, in a 3D sky city. Each
 session is a floating district and each agent is a little robot, a Skybot. See at a glance who's
 working, who's stuck and who needs you, and approve or deny their requests right from the city.
@@ -214,6 +221,13 @@ node dev/serve.js                                 # a preview with a fake city a
 node dev/icons.js                                 # remakes the tab icon's PNGs after a change to src/icons/icon.svg
 node tests/smoke.js && node tests/live-smoke.js   # browser tests: the preview, then the real server
 ```
+
+## Contributing
+
+Contributions are welcome. Skyborne is for Claude Code only, runs only on your computer and has no
+telemetry, so please read [CONTRIBUTING.md](CONTRIBUTING.md) before you start. Please follow the
+[Code of Conduct](CODE_OF_CONDUCT.md), and report security problems privately, as
+[SECURITY.md](SECURITY.md) describes.
 
 ## Author
 
