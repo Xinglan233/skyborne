@@ -5,7 +5,9 @@
 Please report security problems privately, through GitHub's private vulnerability reporting: open
 the repository's **Security and quality** tab and choose **Report a vulnerability** (or go straight to the
 [report form](https://github.com/ishraq21/skyborne/security/advisories/new)). Don't open a public
-issue for them. You'll get an answer as soon as possible; fixes go into the latest version.
+issue for them. Private vulnerability reporting is turned on for this repository, so only the
+maintainer can see what you send. You'll get an answer as soon as possible; fixes go into the latest
+version.
 
 ## What Skyborne stores, and where
 
