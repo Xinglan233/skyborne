@@ -1,0 +1,43 @@
+# Releasing Skyborne
+
+Notes for the maintainer. A release is a version tag; [release.yml](../.github/workflows/release.yml)
+does the rest, using PyPI trusted publishing (no API tokens anywhere).
+
+## Once
+
+- PyPI and TestPyPI each need an account with two-factor sign-in.
+- On each, add a **pending publisher** (account menu, **Publishing**): project `skyborne`, owner
+  `ishraq21`, repository `skyborne`, workflow `release.yml`, and environment `pypi` on PyPI or
+  `testpypi` on TestPyPI. A pending publisher doesn't reserve the name until the first publish.
+- GitHub environments `pypi` (you must approve each run, tags `v*` only) and `testpypi` (branch `main`
+  only) exist in the repository settings.
+
+## Each release
+
+1. Change the version in **both** `pyproject.toml` and `skyborne/__init__.py` (the workflow fails if
+   they differ, or if the tag isn't `v` plus that version). Update the README if the install steps
+   changed: PyPI shows the README as it is at the tag, and a published version can't be edited.
+2. Merge to `main` and wait for CI to be green.
+3. **Dry run**: Actions, **Release**, **Run workflow** on `main`. It runs all of CI, builds the commit as
+   `X.Y.Z.devN` and publishes it to TestPyPI. Check the page at <https://test.pypi.org/project/skyborne/>
+   (images show), then in a clean folder:
+
+   ```sh
+   uv tool install --default-index https://test.pypi.org/simple/ --prerelease allow skyborne
+   skyborne --help && skyborne doctor
+   uv tool uninstall skyborne
+   ```
+
+4. **Release**: tag the commit and push the tag (push `main` with it, in one go, if `main` isn't pushed yet):
+
+   ```sh
+   git tag vX.Y.Z
+   git push --atomic origin main vX.Y.Z
+   ```
+
+   The workflow runs all of CI, builds, then waits for you to approve the `pypi` environment (Actions,
+   the run, **Review deployments**). Approve it, and the package is on PyPI a minute later.
+5. From a clean folder, check `uv tool install skyborne` and `uvx skyborne --help`, then create the
+   GitHub Release for the tag.
+
+A version on PyPI can never be replaced or reused. If something is wrong, publish a new version.

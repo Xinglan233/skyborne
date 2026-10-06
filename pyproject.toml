@@ -5,18 +5,30 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "skyborne"
 version = "0.1.0"
-description = "A local monitor for Claude Code: records every session's events and turns them into live state."
+description = "A live 3D sky city of your Claude Code agents: watch sessions, approve or deny requests. Local-only, no telemetry."
 readme = "README.md"
 authors = [{ name = "Mirza Ishraq Yeahia" }]
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
 requires-python = ">=3.11"
 dependencies = []
+keywords = ["claude-code", "claude", "agents", "monitor", "visualization", "threejs"]
 classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Operating System :: OS Independent",
     "Environment :: Console",
 ]
+
+[project.urls]
+Homepage = "https://github.com/ishraq21/skyborne"
+Documentation = "https://github.com/ishraq21/skyborne/blob/main/docs/GUIDE.md"
+Source = "https://github.com/ishraq21/skyborne"
+Issues = "https://github.com/ishraq21/skyborne/issues"
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
@@ -25,8 +37,9 @@ dev = ["pytest>=8"]
 skyborne = "skyborne.__main__:main"
 
 [tool.setuptools]
-# only the package: without this, flat-layout discovery also finds page/ and plugin/ and refuses to build
-packages = ["skyborne"]
+# only the package (and the folders of the built page inside it, as namespace packages, so setuptools
+# doesn't warn that they are "absent"): without this, flat-layout discovery also finds page/ and plugin/ and refuses to build
+packages.find = { include = ["skyborne", "skyborne.*"], namespaces = true }
 
 [tool.setuptools.package-data]
 # the built city page (made by `cd page && node build.js`), so an installed Skyborne can serve it
