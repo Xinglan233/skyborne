@@ -1,0 +1,19 @@
+{
+  "_source": "observed, run s2, path /hook/PostToolUseFailure",
+  "session_id": "00000000-0000-4000-8000-000000000007",
+  "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000007.jsonl",
+  "cwd": "/home/user/project",
+  "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000007/scratchpad",
+  "prompt_id": "00000000-0000-4000-8000-000000000010",
+  "permission_mode": "default",
+  "hook_event_name": "PostToolUseFailure",
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "ls /nonexistent-skyborne-dir",
+    "description": "List contents of nonexistent directory"
+  },
+  "tool_use_id": "toolu_000000000000000000000004",
+  "error": "Exit code 1\nls: /nonexistent-skyborne-dir: No such file or directory",
+  "is_interrupt": false,
+  "duration_ms": 25
+}

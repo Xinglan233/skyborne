@@ -1,0 +1,12 @@
+{
+  "_source": "observed, run s1a, path /hook/UserPromptSubmit",
+  "session_id": "00000000-0000-4000-8000-000000000001",
+  "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+  "cwd": "/home/user/project",
+  "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+  "prompt_id": "00000000-0000-4000-8000-000000000002",
+  "permission_mode": "default",
+  "hook_event_name": "UserPromptSubmit",
+  "prompt": "Run exactly this bash command and nothing else: touch spike-1a.txt",
+  "session_title": "spike-approval-a"
+}

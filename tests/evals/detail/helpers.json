@@ -1,0 +1,71 @@
+{
+ "name": "helpers",
+ "expect": {
+  "id": "00000000-0000-4000-8000-0000000000aa",
+  "updatedAt": 10190,
+  "agents": [
+   {
+    "id": "main",
+    "name": "Skybot",
+    "role": "Lead Agent",
+    "type": "lead",
+    "parent": null,
+    "start": 1000,
+    "end": null
+   },
+   {
+    "id": "a0000000000000001",
+    "name": "Scout 1",
+    "role": "Explore Agent",
+    "type": "Explore",
+    "parent": "main",
+    "start": 5440,
+    "end": 8760
+   }
+  ],
+  "steps": [
+   {
+    "id": "toolu_000000000000000000000002",
+    "agent": "main",
+    "tool": "Agent",
+    "kind": "spawn",
+    "text": "Sending out a Scout",
+    "start": 5430,
+    "end": 5460,
+    "ms": 4,
+    "outcome": "ok",
+    "error": ""
+   },
+   {
+    "id": "toolu_000000000000000000000005",
+    "agent": "a0000000000000001",
+    "tool": "Read",
+    "kind": "read",
+    "text": "Reading alpha.txt",
+    "start": 7330,
+    "end": 7340,
+    "ms": 2,
+    "outcome": "ok",
+    "error": ""
+   }
+  ],
+  "conversation": [
+   {
+    "ts": 1500,
+    "who": "you",
+    "text": "Count the lines in alpha.txt with a helper"
+   },
+   {
+    "ts": 8200,
+    "who": "claude",
+    "text": "Both agents are now running. I'll wait for their results and reply once they complete."
+   },
+   {
+    "ts": 10190,
+    "who": "claude",
+    "text": "Alpha.txt has 4 lines."
+   }
+  ],
+  "files": []
+ }
+}

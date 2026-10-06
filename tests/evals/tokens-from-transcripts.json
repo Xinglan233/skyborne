@@ -1,0 +1,878 @@
+{
+ "name": "tokens-from-transcripts",
+ "description": "Tokens from a real session's transcripts, each message counted once: 426,143 for the lead and 517,687 with its helpers.",
+ "now": 2000000,
+ "events": [
+  {
+   "ts": 1000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000012.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000012/scratchpad",
+    "hook_event_name": "SessionStart",
+    "source": "startup",
+    "model": "claude-haiku-4-5-20251001",
+    "session_title": "spike-approval-b"
+   }
+  }
+ ],
+ "facts": [
+  {
+   "ts": 1790998244251,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000001",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 642,
+    "cw": 6475,
+    "cr": 29963
+   }
+  },
+  {
+   "ts": 1790998244675,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000001",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 642,
+    "cw": 6475,
+    "cr": 29963
+   }
+  },
+  {
+   "ts": 1790998244748,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "tool_result",
+   "tool_use_id": "toolu_000000000000000000000002",
+   "is_error": false,
+   "refused": false
+  },
+  {
+   "ts": 1790998245119,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000001",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 642,
+    "cw": 6475,
+    "cr": 29963
+   }
+  },
+  {
+   "ts": 1790998245166,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "tool_result",
+   "tool_use_id": "toolu_000000000000000000000006",
+   "is_error": false,
+   "refused": false
+  },
+  {
+   "ts": 1790998247223,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000002",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 8,
+    "out": 111,
+    "cw": 5212,
+    "cr": 36438
+   }
+  },
+  {
+   "ts": 1790998247412,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000002",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 8,
+    "out": 111,
+    "cw": 5212,
+    "cr": 36438
+   }
+  },
+  {
+   "ts": 1790998248026,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "task_notification",
+   "task_id": "a0000000000000001",
+   "tool_use_id": "toolu_000000000000000000000002",
+   "status": "completed"
+  },
+  {
+   "ts": 1790998249083,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000003",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 80,
+    "cw": 382,
+    "cr": 41766
+   }
+  },
+  {
+   "ts": 1790998249401,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000003",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 80,
+    "cw": 382,
+    "cr": 41766
+   }
+  },
+  {
+   "ts": 1790998249445,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "task_notification",
+   "task_id": "a0000000000000002",
+   "tool_use_id": "toolu_000000000000000000000006",
+   "status": "completed"
+  },
+  {
+   "ts": 1790998250588,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000004",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 84,
+    "cw": 463,
+    "cr": 42148
+   }
+  },
+  {
+   "ts": 1790998250818,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000004",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 84,
+    "cw": 463,
+    "cr": 42148
+   }
+  },
+  {
+   "ts": 1790998295073,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000005",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 191,
+    "cw": 70,
+    "cr": 42702
+   }
+  },
+  {
+   "ts": 1790998295381,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000005",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 191,
+    "cw": 70,
+    "cr": 42702
+   }
+  },
+  {
+   "ts": 1790998297466,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "tool_result",
+   "tool_use_id": "toolu_000000000000000000000007",
+   "is_error": false,
+   "refused": false
+  },
+  {
+   "ts": 1790998298262,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000006",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 8,
+    "out": 108,
+    "cw": 242,
+    "cr": 42772
+   }
+  },
+  {
+   "ts": 1790998298555,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000006",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 8,
+    "out": 108,
+    "cw": 242,
+    "cr": 42772
+   }
+  },
+  {
+   "ts": 1790998299113,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "tool_result",
+   "tool_use_id": "toolu_000000000000000000000004",
+   "is_error": true,
+   "refused": false
+  },
+  {
+   "ts": 1790998300467,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000007",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 8,
+    "out": 122,
+    "cw": 185,
+    "cr": 43014
+   }
+  },
+  {
+   "ts": 1790998300735,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000007",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 8,
+    "out": 122,
+    "cw": 185,
+    "cr": 43014
+   }
+  },
+  {
+   "ts": 1790998304850,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000008",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 452,
+    "cw": 214,
+    "cr": 43199
+   }
+  },
+  {
+   "ts": 1790998305362,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000008",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 452,
+    "cw": 214,
+    "cr": 43199
+   }
+  },
+  {
+   "ts": 1790998305440,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "tool_result",
+   "tool_use_id": "toolu_000000000000000000000008",
+   "is_error": false,
+   "refused": false
+  },
+  {
+   "ts": 1790998306722,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000009",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 8,
+    "out": 65,
+    "cw": 786,
+    "cr": 43413
+   }
+  },
+  {
+   "ts": 1790998306846,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000009",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 8,
+    "out": 65,
+    "cw": 786,
+    "cr": 43413
+   }
+  },
+  {
+   "ts": 1790998310357,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "task_notification",
+   "task_id": "a0000000000000008",
+   "tool_use_id": "toolu_000000000000000000000008",
+   "status": "completed"
+  },
+  {
+   "ts": 1790998311413,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000010",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 69,
+    "cw": 414,
+    "cr": 44269
+   }
+  },
+  {
+   "ts": 1790998311524,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000010",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 69,
+    "cw": 414,
+    "cr": 44269
+   }
+  },
+  {
+   "ts": 1790998246324,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000016",
+   "agent": "a0000000000000001",
+   "model": "claude-haiku-4-5-20251001",
+   "final": false,
+   "usage": {
+    "in": 10,
+    "out": 3,
+    "cw": 11896,
+    "cr": 0
+   }
+  },
+  {
+   "ts": 1790998246568,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000016",
+   "agent": "a0000000000000001",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 177,
+    "cw": 11896,
+    "cr": 0
+   }
+  },
+  {
+   "ts": 1790998246582,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "tool_result",
+   "tool_use_id": "toolu_000000000000000000000005",
+   "is_error": false,
+   "refused": false
+  },
+  {
+   "ts": 1790998247956,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000017",
+   "agent": "a0000000000000001",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 8,
+    "out": 70,
+    "cw": 1770,
+    "cr": 11896
+   }
+  },
+  {
+   "ts": 1790998247996,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000017",
+   "agent": "a0000000000000001",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 8,
+    "out": 70,
+    "cw": 1770,
+    "cr": 11896
+   }
+  },
+  {
+   "ts": 1790998246671,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000011",
+   "agent": "a0000000000000002",
+   "model": "claude-haiku-4-5-20251001",
+   "final": false,
+   "usage": {
+    "in": 10,
+    "out": 3,
+    "cw": 11893,
+    "cr": 0
+   }
+  },
+  {
+   "ts": 1790998246939,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000011",
+   "agent": "a0000000000000002",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 157,
+    "cw": 11893,
+    "cr": 0
+   }
+  },
+  {
+   "ts": 1790998246949,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "tool_result",
+   "tool_use_id": "toolu_000000000000000000000009",
+   "is_error": false,
+   "refused": false
+  },
+  {
+   "ts": 1790998248266,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000012",
+   "agent": "a0000000000000002",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 8,
+    "out": 79,
+    "cw": 1747,
+    "cr": 11893
+   }
+  },
+  {
+   "ts": 1790998248287,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000012",
+   "agent": "a0000000000000002",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 8,
+    "out": 79,
+    "cw": 1747,
+    "cr": 11893
+   }
+  },
+  {
+   "ts": 1790998306809,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000013",
+   "agent": "a0000000000000008",
+   "model": "claude-haiku-4-5-20251001",
+   "final": false,
+   "usage": {
+    "in": 10,
+    "out": 6,
+    "cw": 6334,
+    "cr": 5550
+   }
+  },
+  {
+   "ts": 1790998307319,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000013",
+   "agent": "a0000000000000008",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 182,
+    "cw": 6334,
+    "cr": 5550
+   }
+  },
+  {
+   "ts": 1790998307346,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "tool_result",
+   "tool_use_id": "toolu_000000000000000000000010",
+   "is_error": false,
+   "refused": false
+  },
+  {
+   "ts": 1790998308740,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000014",
+   "agent": "a0000000000000008",
+   "model": "claude-haiku-4-5-20251001",
+   "final": false,
+   "usage": {
+    "in": 8,
+    "out": 1,
+    "cw": 1765,
+    "cr": 11884
+   }
+  },
+  {
+   "ts": 1790998309089,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000014",
+   "agent": "a0000000000000008",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 8,
+    "out": 133,
+    "cw": 1765,
+    "cr": 11884
+   }
+  },
+  {
+   "ts": 1790998309111,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "tool_result",
+   "tool_use_id": "toolu_000000000000000000000011",
+   "is_error": false,
+   "refused": false
+  },
+  {
+   "ts": 1790998310063,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000015",
+   "agent": "a0000000000000008",
+   "model": "claude-haiku-4-5-20251001",
+   "final": false,
+   "usage": {
+    "in": 8,
+    "out": 3,
+    "cw": 313,
+    "cr": 13649
+   }
+  },
+  {
+   "ts": 1790998310328,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_000000000000000000000015",
+   "agent": "a0000000000000008",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 8,
+    "out": 94,
+    "cw": 313,
+    "cr": 13649
+   }
+  },
+  {
+   "ts": 0,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "meta",
+   "agent_id": "a0000000000000001",
+   "agent_type": "Explore",
+   "description": "count alpha lines",
+   "tool_use_id": "toolu_000000000000000000000002"
+  },
+  {
+   "ts": 0,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "meta",
+   "agent_id": "a0000000000000002",
+   "agent_type": "Explore",
+   "description": "find beta word",
+   "tool_use_id": "toolu_000000000000000000000006"
+  },
+  {
+   "ts": 0,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "meta",
+   "agent_id": "a0000000000000008",
+   "agent_type": "Explore",
+   "description": "list sample files",
+   "tool_use_id": "toolu_000000000000000000000008"
+  }
+ ],
+ "expect": {
+  "00000000-0000-4000-8000-0000000000aa": {
+   "v": 2,
+   "title": "project",
+   "headline": "No prompt yet",
+   "startedAt": 0,
+   "updatedAt": 1790998311524,
+   "turns": 0,
+   "tokens": {
+    "total": 517687,
+    "in": 154,
+    "out": 2816,
+    "cw": 50161,
+    "cr": 464556,
+    "helpers": [
+     {
+      "id": "a0000000000000001",
+      "name": "Scout 1",
+      "role": "Explore Agent",
+      "usage": {
+       "in": 18,
+       "out": 247,
+       "cw": 13666,
+       "cr": 11896
+      },
+      "model": "claude-haiku-4-5-20251001"
+     },
+     {
+      "id": "a0000000000000002",
+      "name": "Scout 2",
+      "role": "Explore Agent",
+      "usage": {
+       "in": 18,
+       "out": 236,
+       "cw": 13640,
+       "cr": 11893
+      },
+      "model": "claude-haiku-4-5-20251001"
+     },
+     {
+      "id": "a0000000000000008",
+      "name": "Scout 3",
+      "role": "Explore Agent",
+      "usage": {
+       "in": 26,
+       "out": 409,
+       "cw": 8412,
+       "cr": 31083
+      },
+      "model": "claude-haiku-4-5-20251001"
+     }
+    ]
+   },
+   "waiting": null,
+   "agents": [
+    {
+     "id": "main",
+     "name": "Skybot",
+     "role": "Lead Agent",
+     "type": "lead",
+     "status": "idle",
+     "kind": "idle",
+     "tool": "",
+     "activity": "Waiting for a prompt",
+     "activitySince": 0,
+     "waiting": false,
+     "tools": 0,
+     "usage": {
+      "in": 92,
+      "out": 1924,
+      "cw": 14443,
+      "cr": 409684
+     },
+     "model": "claude-haiku-4-5-20251001",
+     "models": [
+      "claude-haiku-4-5-20251001"
+     ]
+    },
+    {
+     "id": "a0000000000000001",
+     "name": "Scout 1",
+     "role": "Explore Agent",
+     "type": "Explore",
+     "status": "done",
+     "kind": "done",
+     "tool": "",
+     "activity": "Finished",
+     "activitySince": 1790998248026,
+     "waiting": false,
+     "tools": 0,
+     "usage": {
+      "in": 18,
+      "out": 247,
+      "cw": 13666,
+      "cr": 11896
+     },
+     "parent": "main",
+     "description": "count alpha lines",
+     "model": "claude-haiku-4-5-20251001",
+     "models": [
+      "claude-haiku-4-5-20251001"
+     ]
+    },
+    {
+     "id": "a0000000000000002",
+     "name": "Scout 2",
+     "role": "Explore Agent",
+     "type": "Explore",
+     "status": "done",
+     "kind": "done",
+     "tool": "",
+     "activity": "Finished",
+     "activitySince": 1790998249445,
+     "waiting": false,
+     "tools": 0,
+     "usage": {
+      "in": 18,
+      "out": 236,
+      "cw": 13640,
+      "cr": 11893
+     },
+     "parent": "main",
+     "description": "find beta word",
+     "model": "claude-haiku-4-5-20251001",
+     "models": [
+      "claude-haiku-4-5-20251001"
+     ]
+    },
+    {
+     "id": "a0000000000000008",
+     "name": "Scout 3",
+     "role": "Explore Agent",
+     "type": "Explore",
+     "status": "done",
+     "kind": "done",
+     "tool": "",
+     "activity": "Finished",
+     "activitySince": 1790998310357,
+     "waiting": false,
+     "tools": 0,
+     "usage": {
+      "in": 26,
+      "out": 409,
+      "cw": 8412,
+      "cr": 31083
+     },
+     "parent": "main",
+     "description": "list sample files",
+     "model": "claude-haiku-4-5-20251001",
+     "models": [
+      "claude-haiku-4-5-20251001"
+     ]
+    }
+   ],
+   "feed": [
+    {
+     "ts": 1000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "join",
+     "text": "Moved into the project district"
+    },
+    {
+     "ts": 0,
+     "agent": "Scout 3",
+     "agentId": "a0000000000000008",
+     "kind": "join",
+     "text": "Scout 3 beamed in"
+    },
+    {
+     "ts": 0,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "spawn",
+     "text": "Brought in Scout 3: list sample files"
+    },
+    {
+     "ts": 0,
+     "agent": "Scout 2",
+     "agentId": "a0000000000000002",
+     "kind": "join",
+     "text": "Scout 2 beamed in"
+    },
+    {
+     "ts": 0,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "spawn",
+     "text": "Brought in Scout 2: find beta word"
+    },
+    {
+     "ts": 0,
+     "agent": "Scout 1",
+     "agentId": "a0000000000000001",
+     "kind": "join",
+     "text": "Scout 1 beamed in"
+    },
+    {
+     "ts": 0,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "spawn",
+     "text": "Brought in Scout 1: count alpha lines"
+    }
+   ],
+   "sessionName": "spike-approval-b"
+  }
+ }
+}

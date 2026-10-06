@@ -1,0 +1,166 @@
+{
+ "name": "waiting-open",
+ "description": "A PermissionRequest matched to its PreToolUse puts the lead in \"needs you\".",
+ "now": 2000000,
+ "events": [
+  {
+   "ts": 1000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000012.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000012/scratchpad",
+    "hook_event_name": "SessionStart",
+    "source": "startup",
+    "model": "claude-haiku-4-5-20251001",
+    "session_title": "spike-approval-b"
+   }
+  },
+  {
+   "ts": 2000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "Run exactly this bash command and nothing else: touch spike-1a.txt",
+    "session_title": "spike-approval-a"
+   }
+  },
+  {
+   "ts": 3000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "touch spike-1a.txt",
+     "description": "Create empty file spike-1a.txt"
+    },
+    "tool_use_id": "toolu_000000000000000000000003"
+   }
+  },
+  {
+   "ts": 3010,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PermissionRequest",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "touch spike-1a.txt",
+     "description": "Create empty file spike-1a.txt"
+    },
+    "permission_suggestions": [
+     {
+      "type": "addDirectories",
+      "directories": [
+       "/home/user/project"
+      ],
+      "destination": "session"
+     },
+     {
+      "type": "setMode",
+      "mode": "acceptEdits",
+      "destination": "session"
+     }
+    ]
+   }
+  }
+ ],
+ "facts": [],
+ "expect": {
+  "00000000-0000-4000-8000-0000000000aa": {
+   "v": 2,
+   "title": "project",
+   "headline": "Run exactly this bash command and nothing else: touch spike-1a.txt",
+   "startedAt": 1000,
+   "updatedAt": 3010,
+   "turns": 1,
+   "tokens": {
+    "total": 0,
+    "in": 0,
+    "out": 0,
+    "cw": 0,
+    "cr": 0,
+    "helpers": []
+   },
+   "waiting": {
+    "agent": "main",
+    "tool": "Bash",
+    "since": 3010
+   },
+   "agents": [
+    {
+     "id": "main",
+     "name": "Skybot",
+     "role": "Lead Agent",
+     "type": "lead",
+     "status": "working",
+     "kind": "wait",
+     "tool": "Bash",
+     "activity": "Needs approval: Bash",
+     "activitySince": 3010,
+     "waiting": true,
+     "tools": 1,
+     "usage": {
+      "in": 0,
+      "out": 0,
+      "cw": 0,
+      "cr": 0
+     },
+     "model": "claude-haiku-4-5-20251001",
+     "models": [
+      "claude-haiku-4-5-20251001"
+     ]
+    }
+   ],
+   "feed": [
+    {
+     "ts": 3010,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "wait",
+     "text": "Needs approval for Bash",
+     "tool": "Bash"
+    },
+    {
+     "ts": 3000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "bash",
+     "text": "$ touch spike-1a.txt",
+     "tool": "Bash",
+     "toolUseId": "toolu_000000000000000000000003"
+    },
+    {
+     "ts": 2000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "prompt",
+     "text": "Run exactly this bash command and nothing else: touch spike-1a.txt"
+    },
+    {
+     "ts": 1000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "join",
+     "text": "Moved into the project district"
+    }
+   ],
+   "sessionName": "spike-approval-a"
+  }
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "name": "out-of-order-arrival",
+ "expect": {
+  "id": "00000000-0000-4000-8000-0000000000aa",
+  "updatedAt": 3004,
+  "agents": [
+   {
+    "id": "main",
+    "name": "Skybot",
+    "role": "Lead Agent",
+    "type": "lead",
+    "parent": null,
+    "start": 1000,
+    "end": null
+   }
+  ],
+  "steps": [
+   {
+    "id": "toolu_000000000000000000000003",
+    "agent": "main",
+    "tool": "Bash",
+    "kind": "bash",
+    "text": "$ touch spike-1a.txt",
+    "start": 3004,
+    "end": 3000,
+    "ms": 82,
+    "outcome": "ok",
+    "error": ""
+   }
+  ],
+  "conversation": [
+   {
+    "ts": 1000,
+    "who": "you",
+    "text": "Run exactly this bash command and nothing else: touch spike-1a.txt"
+   }
+  ],
+  "files": []
+ }
+}

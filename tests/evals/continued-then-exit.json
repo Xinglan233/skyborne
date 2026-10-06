@@ -1,0 +1,153 @@
+{
+ "name": "continued-then-exit",
+ "description": "/bg typed in the terminal: Claude Code writes continued-in, then half a second later sends SessionEnd (prompt_input_exit) and quits. The hand-over is how it ended.",
+ "now": 2000000,
+ "events": [
+  {
+   "ts": 1000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000012.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000012/scratchpad",
+    "hook_event_name": "SessionStart",
+    "source": "startup",
+    "model": "claude-haiku-4-5-20251001",
+    "session_title": "spike-approval-b"
+   }
+  },
+  {
+   "ts": 2000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "Make the film",
+    "session_title": "spike-approval-a"
+   }
+  },
+  {
+   "ts": 4000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "Stop",
+    "stop_hook_active": false,
+    "last_assistant_message": "Done",
+    "background_tasks": [],
+    "session_crons": []
+   }
+  },
+  {
+   "ts": 15400,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "hook_event_name": "SessionEnd",
+    "reason": "continued",
+    "continued_in": "00000000-0000-4000-8000-0000000000bb"
+   },
+   "source": "transcript"
+  },
+  {
+   "ts": 15886,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000011",
+    "hook_event_name": "SessionEnd",
+    "reason": "prompt_input_exit"
+   }
+  }
+ ],
+ "facts": [],
+ "expect": {
+  "00000000-0000-4000-8000-0000000000aa": {
+   "v": 2,
+   "title": "project",
+   "headline": "Done",
+   "startedAt": 1000,
+   "updatedAt": 15886,
+   "turns": 1,
+   "tokens": {
+    "total": 0,
+    "in": 0,
+    "out": 0,
+    "cw": 0,
+    "cr": 0,
+    "helpers": []
+   },
+   "waiting": null,
+   "agents": [
+    {
+     "id": "main",
+     "name": "Skybot",
+     "role": "Lead Agent",
+     "type": "lead",
+     "status": "idle",
+     "kind": "leave",
+     "tool": "",
+     "activity": "Continued in another session",
+     "activitySince": 15400,
+     "waiting": false,
+     "tools": 0,
+     "usage": {
+      "in": 0,
+      "out": 0,
+      "cw": 0,
+      "cr": 0
+     },
+     "model": "claude-haiku-4-5-20251001",
+     "models": [
+      "claude-haiku-4-5-20251001"
+     ]
+    }
+   ],
+   "feed": [
+    {
+     "ts": 15400,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "leave",
+     "text": "Continued in another session"
+    },
+    {
+     "ts": 4000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "answer",
+     "text": "Done"
+    },
+    {
+     "ts": 2000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "prompt",
+     "text": "Make the film"
+    },
+    {
+     "ts": 1000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "join",
+     "text": "Moved into the project district"
+    }
+   ],
+   "sessionName": "spike-approval-a",
+   "ended": {
+    "at": 15400,
+    "reason": "continued",
+    "continuedIn": "00000000-0000-4000-8000-0000000000bb"
+   }
+  }
+ }
+}

@@ -1,0 +1,323 @@
+{
+ "name": "turn-with-tool",
+ "description": "A whole turn: prompt, an approved Bash call, answer. Duration from duration_ms; tokens and cost from facts.",
+ "now": 2000000,
+ "events": [
+  {
+   "ts": 1000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000012.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000012/scratchpad",
+    "hook_event_name": "SessionStart",
+    "source": "startup",
+    "model": "claude-haiku-4-5-20251001",
+    "session_title": "spike-approval-b"
+   }
+  },
+  {
+   "ts": 2000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "Run exactly this bash command and nothing else: touch spike-1a.txt",
+    "session_title": "spike-approval-a"
+   }
+  },
+  {
+   "ts": 3000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "touch spike-1a.txt",
+     "description": "Create empty file spike-1a.txt"
+    },
+    "tool_use_id": "toolu_000000000000000000000003"
+   }
+  },
+  {
+   "ts": 3010,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PermissionRequest",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "touch spike-1a.txt",
+     "description": "Create empty file spike-1a.txt"
+    },
+    "permission_suggestions": [
+     {
+      "type": "addDirectories",
+      "directories": [
+       "/home/user/project"
+      ],
+      "destination": "session"
+     },
+     {
+      "type": "setMode",
+      "mode": "acceptEdits",
+      "destination": "session"
+     }
+    ]
+   }
+  },
+  {
+   "ts": 9000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "touch spike-1a.txt",
+     "description": "Create empty file spike-1a.txt"
+    },
+    "tool_response": {
+     "stdout": "",
+     "stderr": "",
+     "interrupted": false,
+     "isImage": false,
+     "noOutputExpected": true
+    },
+    "tool_use_id": "toolu_000000000000000000000003",
+    "duration_ms": 82
+   }
+  },
+  {
+   "ts": 9500,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "Stop",
+    "stop_hook_active": false,
+    "last_assistant_message": "Done. Created `spike-1a.txt`.",
+    "background_tasks": [],
+    "session_crons": []
+   }
+  }
+ ],
+ "facts": [
+  {
+   "ts": 9400,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "m1",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 100,
+    "cw": 50,
+    "cr": 1000
+   }
+  },
+  {
+   "ts": 9600,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "statusline",
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000012",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000012.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000012/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000015",
+    "session_name": "spike-approval-b",
+    "model": {
+     "id": "claude-haiku-4-5-20251001",
+     "display_name": "Haiku 4.5"
+    },
+    "workspace": {
+     "current_dir": "/home/user/project",
+     "project_dir": "/home/user/project",
+     "added_dirs": []
+    },
+    "version": "2.1.288",
+    "output_style": {
+     "name": "default"
+    },
+    "cost": {
+     "total_cost_usd": 0.0608294,
+     "total_duration_ms": 179984,
+     "total_api_duration_ms": 17722,
+     "total_lines_added": 0,
+     "total_lines_removed": 0
+    },
+    "context_window": {
+     "total_input_tokens": 41130,
+     "total_output_tokens": 119,
+     "context_window_size": 200000,
+     "current_usage": {
+      "input_tokens": 10,
+      "output_tokens": 119,
+      "cache_creation_input_tokens": 48,
+      "cache_read_input_tokens": 41072
+     },
+     "used_percentage": 21,
+     "remaining_percentage": 79
+    },
+    "exceeds_200k_tokens": false,
+    "prompt_cache": {
+     "warm": true,
+     "caching_observed": true,
+     "ttl": "1h",
+     "expires_at": 1791001793,
+     "requests": 6,
+     "misses": 0,
+     "expected_rebuilds": 0,
+     "hit_ratio": 0.9538118994903066,
+     "cache_write_tokens": 11063,
+     "miss_recache_tokens": 0,
+     "last_miss_at": null,
+     "last_miss_cause": null,
+     "miss_causes": {},
+     "recache_tokens_if_cold": 41130
+    },
+    "fast_mode": false,
+    "thinking": {
+     "enabled": true
+    },
+    "rate_limits": {
+     "five_hour": {
+      "used_percentage": 5,
+      "resets_at": 1791009600
+     },
+     "seven_day": {
+      "used_percentage": 14,
+      "resets_at": 1791565200
+     }
+    }
+   }
+  }
+ ],
+ "expect": {
+  "00000000-0000-4000-8000-0000000000aa": {
+   "v": 2,
+   "title": "project",
+   "headline": "Done. Created `spike-1a.txt`.",
+   "startedAt": 1000,
+   "updatedAt": 9600,
+   "turns": 1,
+   "tokens": {
+    "total": 1160,
+    "in": 10,
+    "out": 100,
+    "cw": 50,
+    "cr": 1000,
+    "helpers": []
+   },
+   "waiting": null,
+   "agents": [
+    {
+     "id": "main",
+     "name": "Skybot",
+     "role": "Lead Agent",
+     "type": "lead",
+     "status": "done",
+     "kind": "done",
+     "tool": "",
+     "activity": "Answered",
+     "activitySince": 9500,
+     "waiting": false,
+     "tools": 1,
+     "usage": {
+      "in": 10,
+      "out": 100,
+      "cw": 50,
+      "cr": 1000
+     },
+     "model": "claude-haiku-4-5-20251001",
+     "models": [
+      "claude-haiku-4-5-20251001"
+     ]
+    }
+   ],
+   "feed": [
+    {
+     "ts": 9500,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "answer",
+     "text": "Done. Created `spike-1a.txt`."
+    },
+    {
+     "ts": 3010,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "wait",
+     "text": "Needs approval for Bash",
+     "tool": "Bash"
+    },
+    {
+     "ts": 3000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "bash",
+     "text": "$ touch spike-1a.txt",
+     "tool": "Bash",
+     "toolUseId": "toolu_000000000000000000000003",
+     "durationMs": 82
+    },
+    {
+     "ts": 2000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "prompt",
+     "text": "Run exactly this bash command and nothing else: touch spike-1a.txt"
+    },
+    {
+     "ts": 1000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "join",
+     "text": "Moved into the project district"
+    }
+   ],
+   "sessionName": "spike-approval-b",
+   "context": {
+    "tokens": 41130,
+    "window": 200000,
+    "percent": 21
+   },
+   "cost": {
+    "usd": 0.0608294
+   },
+   "rateLimits": {
+    "five_hour": {
+     "used_percentage": 5,
+     "resets_at": 1791009600
+    },
+    "seven_day": {
+     "used_percentage": 14,
+     "resets_at": 1791565200
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,8 @@
+{
+  "agentType": "Explore",
+  "description": "count alpha lines",
+  "toolUseId": "toolu_000000000000000000000002",
+  "spawnDepth": 1,
+  "requestShape": "background",
+  "requestNonInteractive": true
+}

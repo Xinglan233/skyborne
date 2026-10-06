@@ -1,0 +1,38 @@
+{
+  "_source": "observed, run s3: one long reply, every batch (deltas trimmed)",
+  "batches": [
+    {
+      "index": 0,
+      "final": false,
+      "delta": "1. Apple \u2013 Crisp, sweet, and juicy\n"
+    },
+    {
+      "index": 1,
+      "final": false,
+      "delta": "2. Banana \u2013 Soft, creamy, and potassium-rich\n"
+    },
+    {
+      "index": 2,
+      "final": false,
+      "delta": "3. Orange \u2013 Bright, tangy citrus burst\n"
+    },
+    {
+      "index": 3,
+      "final": false,
+      "delta": "4. Mango \u2013 Tropical, sweet, and fragrant\n5. Pineapple \u2013 Spiky outside, tangy inside\n"
+    },
+    {
+      "index": 4,
+      "final": false,
+      "delta": "6. Strawberry \u2013 Red, sweet, and seedy\n"
+    },
+    {
+      "index": 5,
+      "final": false,
+      "delta": "7. Blueberry \u2013 Tiny, round, and antioxidant-rich\n8. Raspberry \u2013 Delicate, tart, and hollow\n"
+    },
+    {
+      "\u2026": "29 batches in all"
+    }
+  ]
+}

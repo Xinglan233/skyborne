@@ -1,0 +1,88 @@
+{
+ "name": "stop-failure",
+ "description": "A turn that ends on an API error.",
+ "now": 2000000,
+ "events": [
+  {
+   "ts": 1000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "Run exactly this bash command and nothing else: touch spike-1a.txt",
+    "session_title": "spike-approval-a"
+   }
+  },
+  {
+   "ts": 2000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "cwd": "/home/user/project",
+    "hook_event_name": "StopFailure",
+    "error": "rate_limit"
+   }
+  }
+ ],
+ "facts": [],
+ "expect": {
+  "00000000-0000-4000-8000-0000000000aa": {
+   "v": 2,
+   "title": "project",
+   "headline": "Hit a snag",
+   "startedAt": 1000,
+   "updatedAt": 2000,
+   "turns": 1,
+   "tokens": {
+    "total": 0,
+    "in": 0,
+    "out": 0,
+    "cw": 0,
+    "cr": 0,
+    "helpers": []
+   },
+   "waiting": null,
+   "agents": [
+    {
+     "id": "main",
+     "name": "Skybot",
+     "role": "Lead Agent",
+     "type": "lead",
+     "status": "error",
+     "kind": "error",
+     "tool": "",
+     "activity": "Turn ended on an error (rate_limit)",
+     "activitySince": 2000,
+     "waiting": false,
+     "tools": 0,
+     "usage": {
+      "in": 0,
+      "out": 0,
+      "cw": 0,
+      "cr": 0
+     }
+    }
+   ],
+   "feed": [
+    {
+     "ts": 2000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "error",
+     "text": "Turn ended on an error (rate_limit)"
+    },
+    {
+     "ts": 1000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "prompt",
+     "text": "Run exactly this bash command and nothing else: touch spike-1a.txt"
+    }
+   ],
+   "sessionName": "spike-approval-a"
+  }
+ }
+}

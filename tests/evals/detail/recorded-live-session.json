@@ -1,0 +1,148 @@
+{
+ "name": "recorded-live-session",
+ "expect": {
+  "id": "00000000-0000-4000-8000-000000000001",
+  "updatedAt": 1791008638587,
+  "agents": [
+   {
+    "id": "main",
+    "name": "Skybot",
+    "role": "Lead Agent",
+    "type": "lead",
+    "parent": null,
+    "start": 1791008593514,
+    "end": 1791008638587
+   },
+   {
+    "id": "a0000000000000001",
+    "name": "Scout 1",
+    "role": "Explore Agent",
+    "type": "Explore",
+    "parent": "main",
+    "start": 1791008623506,
+    "end": 1791008626821
+   },
+   {
+    "id": "a0000000000000002",
+    "name": "Scout 2",
+    "role": "Explore Agent",
+    "type": "Explore",
+    "parent": "main",
+    "start": 1791008623919,
+    "end": 1791008627180
+   }
+  ],
+  "steps": [
+   {
+    "id": "toolu_000000000000000000000001",
+    "agent": "main",
+    "tool": "Agent",
+    "kind": "spawn",
+    "text": "Sending out a Scout",
+    "start": 1791008623493,
+    "end": 1791008623513,
+    "ms": 5,
+    "outcome": "ok",
+    "error": ""
+   },
+   {
+    "id": "toolu_000000000000000000000002",
+    "agent": "main",
+    "tool": "Agent",
+    "kind": "spawn",
+    "text": "Sending out a Scout",
+    "start": 1791008623902,
+    "end": 1791008623927,
+    "ms": 4,
+    "outcome": "ok",
+    "error": ""
+   },
+   {
+    "id": "toolu_000000000000000000000003",
+    "agent": "a0000000000000001",
+    "tool": "Read",
+    "kind": "read",
+    "text": "Reading alpha.txt",
+    "start": 1791008625592,
+    "end": 1791008625599,
+    "ms": 3,
+    "outcome": "ok",
+    "error": ""
+   },
+   {
+    "id": "toolu_000000000000000000000004",
+    "agent": "a0000000000000002",
+    "tool": "Read",
+    "kind": "read",
+    "text": "Reading beta.txt",
+    "start": 1791008626048,
+    "end": 1791008626058,
+    "ms": 5,
+    "outcome": "ok",
+    "error": ""
+   },
+   {
+    "id": "toolu_000000000000000000000005",
+    "agent": "main",
+    "tool": "Bash",
+    "kind": "bash",
+    "text": "$ touch made-by-test.txt",
+    "start": 1791008630906,
+    "end": 1791008632088,
+    "ms": 89,
+    "outcome": "ok",
+    "error": ""
+   },
+   {
+    "id": "toolu_000000000000000000000006",
+    "agent": "main",
+    "tool": "Bash",
+    "kind": "bash",
+    "text": "$ touch made-second.txt",
+    "start": 1791008634039,
+    "end": 1791008635255,
+    "ms": null,
+    "outcome": "refused",
+    "error": ""
+   }
+  ],
+  "conversation": [
+   {
+    "ts": 1791008620000,
+    "who": "you",
+    "text": "In ONE message, call the Agent tool twice in parallel, both with subagent_type Explore: one counts the lines in alpha.txt, the other finds the secret word in beta.txt. Tell each helper to use only the Read tool. Then report both answers."
+   },
+   {
+    "ts": 1791008625108,
+    "who": "claude",
+    "text": "Both agents are now working in the background. I'll report the results once they complete."
+   },
+   {
+    "ts": 1791008628116,
+    "who": "claude",
+    "text": "First result in: **alpha.txt has 5 lines**. Waiting for the second agent to find the secret word in beta.txt..."
+   },
+   {
+    "ts": 1791008628759,
+    "who": "you",
+    "text": "Run exactly this bash command and nothing else: touch made-by-test.txt"
+   },
+   {
+    "ts": 1791008629474,
+    "who": "claude",
+    "text": "Both agents have completed. Here are the results:\n\n- **alpha.txt**: 5 lines\n- **beta.txt**: The secret word is **pineapple**"
+   },
+   {
+    "ts": 1791008632832,
+    "who": "you",
+    "text": "Run exactly this bash command and nothing else: touch made-second.txt"
+   },
+   {
+    "ts": 1791008632995,
+    "who": "claude",
+    "text": "Done."
+   }
+  ],
+  "files": []
+ }
+}

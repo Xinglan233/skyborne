@@ -1,0 +1,48 @@
+{
+ "name": "tokens-from-transcripts",
+ "expect": {
+  "id": "00000000-0000-4000-8000-0000000000aa",
+  "updatedAt": 1790998311524,
+  "agents": [
+   {
+    "id": "main",
+    "name": "Skybot",
+    "role": "Lead Agent",
+    "type": "lead",
+    "parent": null,
+    "start": 1000,
+    "end": null
+   },
+   {
+    "id": "a0000000000000001",
+    "name": "Scout 1",
+    "role": "Explore Agent",
+    "type": "Explore",
+    "parent": "main",
+    "start": 0,
+    "end": null
+   },
+   {
+    "id": "a0000000000000002",
+    "name": "Scout 2",
+    "role": "Explore Agent",
+    "type": "Explore",
+    "parent": "main",
+    "start": 0,
+    "end": null
+   },
+   {
+    "id": "a0000000000000008",
+    "name": "Scout 3",
+    "role": "Explore Agent",
+    "type": "Explore",
+    "parent": "main",
+    "start": 0,
+    "end": null
+   }
+  ],
+  "steps": [],
+  "conversation": [],
+  "files": []
+ }
+}

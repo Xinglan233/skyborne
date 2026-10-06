@@ -1,0 +1,108 @@
+{
+ "name": "permission-denied",
+ "description": "Auto mode refusing a call.",
+ "now": 2000000,
+ "events": [
+  {
+   "ts": 1000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "curl -s -o /dev/null -w '%{http_code}' https://example.com",
+     "description": "Fetch HTTP status code from example.com"
+    },
+    "tool_use_id": "toolu_000000000000000000000001"
+   }
+  },
+  {
+   "ts": 1980,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000005.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000005/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000006",
+    "permission_mode": "auto",
+    "effort": {
+     "level": "high"
+    },
+    "hook_event_name": "PermissionDenied",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "curl -s -o /dev/null -w '%{http_code}' https://example.com",
+     "description": "Fetch HTTP status code from example.com"
+    },
+    "tool_use_id": "toolu_000000000000000000000001",
+    "reason": "[Data Exfiltration]"
+   }
+  }
+ ],
+ "facts": [],
+ "expect": {
+  "00000000-0000-4000-8000-0000000000aa": {
+   "v": 2,
+   "title": "project",
+   "headline": "No prompt yet",
+   "startedAt": 1000,
+   "updatedAt": 1980,
+   "turns": 0,
+   "tokens": {
+    "total": 0,
+    "in": 0,
+    "out": 0,
+    "cw": 0,
+    "cr": 0,
+    "helpers": []
+   },
+   "waiting": null,
+   "agents": [
+    {
+     "id": "main",
+     "name": "Skybot",
+     "role": "Lead Agent",
+     "type": "lead",
+     "status": "working",
+     "kind": "bash",
+     "tool": "Bash",
+     "activity": "$ curl -s -o /dev/null -w '%{http_code}' https://example.com",
+     "activitySince": 1000,
+     "waiting": false,
+     "tools": 1,
+     "usage": {
+      "in": 0,
+      "out": 0,
+      "cw": 0,
+      "cr": 0
+     }
+    }
+   ],
+   "feed": [
+    {
+     "ts": 1980,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "error",
+     "text": "Auto mode refused Bash: [Data Exfiltration]",
+     "tool": "Bash",
+     "toolUseId": "toolu_000000000000000000000001"
+    },
+    {
+     "ts": 1000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "bash",
+     "text": "$ curl -s -o /dev/null -w '%{http_code}' https://example.com",
+     "tool": "Bash",
+     "toolUseId": "toolu_000000000000000000000001"
+    }
+   ]
+  }
+ }
+}

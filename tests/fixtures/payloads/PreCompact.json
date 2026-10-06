@@ -1,0 +1,11 @@
+{
+  "_source": "observed, run s2, path /hook/PreCompact",
+  "session_id": "00000000-0000-4000-8000-000000000007",
+  "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000007.jsonl",
+  "cwd": "/home/user/project",
+  "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000007/scratchpad",
+  "prompt_id": "00000000-0000-4000-8000-000000000008",
+  "hook_event_name": "PreCompact",
+  "trigger": "manual",
+  "custom_instructions": null
+}

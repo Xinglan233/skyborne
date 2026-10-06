@@ -1,0 +1,138 @@
+{
+ "name": "models",
+ "description": "Model history per agent: SessionStart, then transcript models; <synthetic> skipped, repeats collapsed.",
+ "now": 2000000,
+ "events": [
+  {
+   "ts": 1000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000012.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000012/scratchpad",
+    "hook_event_name": "SessionStart",
+    "source": "startup",
+    "model": "claude-haiku-4-5-20251001",
+    "session_title": "spike-approval-b"
+   }
+  }
+ ],
+ "facts": [
+  {
+   "ts": 2000,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "m1",
+   "agent": "main",
+   "model": "claude-sonnet-5-5",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 100,
+    "cw": 50,
+    "cr": 1000
+   }
+  },
+  {
+   "ts": 3000,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "m2",
+   "agent": "main",
+   "model": "<synthetic>",
+   "final": true,
+   "usage": {
+    "in": 0,
+    "out": 0,
+    "cw": 0,
+    "cr": 0
+   }
+  },
+  {
+   "ts": 4000,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "m3",
+   "agent": "main",
+   "model": "claude-sonnet-5-5",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 100,
+    "cw": 50,
+    "cr": 1000
+   }
+  },
+  {
+   "ts": 5000,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "m4",
+   "agent": "main",
+   "model": "claude-opus-5-5",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 100,
+    "cw": 50,
+    "cr": 1000
+   }
+  }
+ ],
+ "expect": {
+  "00000000-0000-4000-8000-0000000000aa": {
+   "v": 2,
+   "title": "project",
+   "headline": "No prompt yet",
+   "startedAt": 1000,
+   "updatedAt": 5000,
+   "turns": 0,
+   "tokens": {
+    "total": 3480,
+    "in": 30,
+    "out": 300,
+    "cw": 150,
+    "cr": 3000,
+    "helpers": []
+   },
+   "waiting": null,
+   "agents": [
+    {
+     "id": "main",
+     "name": "Skybot",
+     "role": "Lead Agent",
+     "type": "lead",
+     "status": "idle",
+     "kind": "idle",
+     "tool": "",
+     "activity": "Waiting for a prompt",
+     "activitySince": 1000,
+     "waiting": false,
+     "tools": 0,
+     "usage": {
+      "in": 30,
+      "out": 300,
+      "cw": 150,
+      "cr": 3000
+     },
+     "model": "claude-opus-5-5",
+     "models": [
+      "claude-haiku-4-5-20251001",
+      "claude-sonnet-5-5",
+      "claude-opus-5-5"
+     ]
+    }
+   ],
+   "feed": [
+    {
+     "ts": 1000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "join",
+     "text": "Moved into the project district"
+    }
+   ],
+   "sessionName": "spike-approval-b"
+  }
+ }
+}

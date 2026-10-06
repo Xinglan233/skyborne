@@ -1,0 +1,12 @@
+{
+  "_source": "observed, run s2: helper finished; Claude Code feeds this in as a new prompt",
+  "session_id": "00000000-0000-4000-8000-000000000007",
+  "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000007.jsonl",
+  "cwd": "/home/user/project",
+  "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000007/scratchpad",
+  "prompt_id": "00000000-0000-4000-8000-000000000014",
+  "permission_mode": "default",
+  "hook_event_name": "UserPromptSubmit",
+  "prompt": "<task-notification>\n<task-id>a0000000000000001</task-id>\n<tool-use-id>toolu_000000000000000000000002</tool-use-id>\n<output-file>/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000007/tasks/a0000000000000001.output</output-file>\n<status>completed</status>\n<summary>Agent \"count alpha lines\" finished</summary>\n<note>A task-notification fires each time this agent stops with no live background children of its own. The user can send it another message and resume it, so the same task-id may notify more than once.</note>\n<result>4</result>\n<usage><subagent_tokens>13807</subagent_token\u2026 [686 chars, trimmed]",
+  "session_title": "spike-helpers"
+}

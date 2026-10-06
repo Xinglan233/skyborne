@@ -1,0 +1,45 @@
+{
+ "name": "continued-elsewhere",
+ "expect": {
+  "id": "00000000-0000-4000-8000-0000000000aa",
+  "updatedAt": 16100,
+  "agents": [
+   {
+    "id": "main",
+    "name": "Skybot",
+    "role": "Lead Agent",
+    "type": "lead",
+    "parent": null,
+    "start": 1000,
+    "end": 15400
+   }
+  ],
+  "steps": [
+   {
+    "id": "toolu_000000000000000000000003",
+    "agent": "main",
+    "tool": "Bash",
+    "kind": "bash",
+    "text": "$ touch spike-1a.txt",
+    "start": 3000,
+    "end": 3500,
+    "ms": 82,
+    "outcome": "ok",
+    "error": ""
+   }
+  ],
+  "conversation": [
+   {
+    "ts": 2000,
+    "who": "you",
+    "text": "Make the film"
+   },
+   {
+    "ts": 6000,
+    "who": "you",
+    "text": "Love it, now add the voice"
+   }
+  ],
+  "files": []
+ }
+}

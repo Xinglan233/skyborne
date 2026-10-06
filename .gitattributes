@@ -1,0 +1,4 @@
+tests/fixtures/** -text
+# built files are compared byte for byte in CI: never convert their line endings
+skyborne/web/** -text
+page/dist/** -text

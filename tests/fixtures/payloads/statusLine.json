@@ -1,0 +1,41 @@
+{
+  "_source": "observed, run s1a, path /statusline",
+  "session_id": "00000000-0000-4000-8000-000000000001",
+  "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+  "cwd": "/home/user/project",
+  "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+  "session_name": "spike-approval-a",
+  "model": {
+    "id": "claude-haiku-4-5-20251001",
+    "display_name": "Haiku 4.5"
+  },
+  "workspace": {
+    "current_dir": "/home/user/project",
+    "project_dir": "/home/user/project",
+    "added_dirs": []
+  },
+  "version": "2.1.288",
+  "output_style": {
+    "name": "default"
+  },
+  "cost": {
+    "total_cost_usd": 0,
+    "total_duration_ms": 624,
+    "total_api_duration_ms": 0,
+    "total_lines_added": 0,
+    "total_lines_removed": 0
+  },
+  "context_window": {
+    "total_input_tokens": 0,
+    "total_output_tokens": 0,
+    "context_window_size": 200000,
+    "current_usage": null,
+    "used_percentage": null,
+    "remaining_percentage": null
+  },
+  "exceeds_200k_tokens": false,
+  "fast_mode": false,
+  "thinking": {
+    "enabled": true
+  }
+}

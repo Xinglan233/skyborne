@@ -1,0 +1,20 @@
+{
+  "_source": "observed, run s3, path /hook/PermissionDenied",
+  "session_id": "00000000-0000-4000-8000-000000000005",
+  "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000005.jsonl",
+  "cwd": "/home/user/project",
+  "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000005/scratchpad",
+  "prompt_id": "00000000-0000-4000-8000-000000000006",
+  "permission_mode": "auto",
+  "effort": {
+    "level": "high"
+  },
+  "hook_event_name": "PermissionDenied",
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "curl -s -o /dev/null -w '%{http_code}' https://example.com",
+    "description": "Fetch HTTP status code from example.com"
+  },
+  "tool_use_id": "toolu_000000000000000000000001",
+  "reason": "[Data Exfiltration]"
+}

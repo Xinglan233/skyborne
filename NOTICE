@@ -1,0 +1,31 @@
+Skyborne
+Copyright 2026 Mirza Ishraq Yeahia
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Skyborne and the Skybot logo are trademarks of Mirza Ishraq Yeahia. Forks must use a different name
+and logo. The license grants no permission to use them beyond saying where the code came from
+(section 6); see TRADEMARK.md.
+
+The built city page (skyborne/web/, made from page/ by page/build.js) bundles the following
+third-party files, unchanged. Their license texts are in skyborne/web/assets/licenses/.
+
+three.js 0.170.0 (build/three.module.min.js and 15 files from examples/jsm)
+  Copyright (c) 2010-2024 three.js authors
+  MIT License. https://threejs.org
+
+Inter (variable, latin and latin-ext), via @fontsource-variable/inter 5.3.0
+  Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)
+  SIL Open Font License 1.1
+
+Unbounded (variable, latin and latin-ext), via @fontsource-variable/unbounded 5.3.0
+  Copyright 2022 The Unbounded Project Authors (https://github.com/googlefonts/unbounded)
+  SIL Open Font License 1.1
+
+JetBrains Mono (variable, latin and latin-ext), via @fontsource-variable/jetbrains-mono 5.3.0
+  Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)
+  SIL Open Font License 1.1
+
+Martian Mono (variable, latin and latin-ext), via @fontsource-variable/martian-mono 5.3.0
+  Copyright 2020 The Martian Mono Project Authors (https://github.com/evilmartians/mono)
+  SIL Open Font License 1.1

@@ -1,0 +1,8 @@
+{
+  "agentType": "Explore",
+  "description": "list sample files",
+  "toolUseId": "toolu_000000000000000000000008",
+  "spawnDepth": 1,
+  "requestShape": "background",
+  "requestNonInteractive": true
+}

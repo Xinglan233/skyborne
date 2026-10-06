@@ -1,0 +1,11 @@
+{
+  "_source": "observed, run s2, path /hook/PostCompact",
+  "session_id": "00000000-0000-4000-8000-000000000007",
+  "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000007.jsonl",
+  "cwd": "/home/user/project",
+  "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000007/scratchpad",
+  "prompt_id": "00000000-0000-4000-8000-000000000008",
+  "hook_event_name": "PostCompact",
+  "trigger": "manual",
+  "compact_summary": "<analysis>\nThe conversation is a straightforward sequence of test requests focused on agent execution and file system operations:\n\n1. The user's first request involved parallel agent spawning with specific subagent_type (Explore) and specified that both should run without background execution. Two agents were launched simultaneously to perform file operations: counting lines in alpha.txt and finding a secret word in beta.txt. Both agents completed successfully with results 4 and \"pineapple\" respectively.\n\n2. The second request was a sequential bash command execution test: first a sleep command\u2026 [4450 chars, trimmed]"
+}

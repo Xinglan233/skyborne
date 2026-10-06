@@ -1,0 +1,17 @@
+{
+  "_source": "observed, run s2: a helper's own tool call carries agent_id/agent_type",
+  "session_id": "00000000-0000-4000-8000-000000000007",
+  "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000007.jsonl",
+  "cwd": "/home/user/project",
+  "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000007/scratchpad",
+  "prompt_id": "00000000-0000-4000-8000-000000000009",
+  "permission_mode": "default",
+  "agent_id": "a0000000000000001",
+  "agent_type": "Explore",
+  "hook_event_name": "PreToolUse",
+  "tool_name": "Read",
+  "tool_input": {
+    "file_path": "/home/user/project/sample/alpha.txt"
+  },
+  "tool_use_id": "toolu_000000000000000000000005"
+}

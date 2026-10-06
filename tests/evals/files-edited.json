@@ -1,0 +1,403 @@
+{
+ "name": "files-edited",
+ "description": "Edits: two Edits of one file (one failed), a Write, a NotebookEdit; a Read is not an edit; a call still open when the session ended stops there.",
+ "now": 2000000,
+ "events": [
+  {
+   "ts": 1000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000012.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000012/scratchpad",
+    "hook_event_name": "SessionStart",
+    "source": "startup",
+    "model": "claude-haiku-4-5-20251001",
+    "session_title": "spike-approval-b"
+   }
+  },
+  {
+   "ts": 1500,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "Tidy the notes",
+    "session_title": "spike-approval-a"
+   }
+  },
+  {
+   "ts": 2000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Edit",
+    "tool_input": {
+     "file_path": "/home/user/project/notes.md",
+     "old_string": "a",
+     "new_string": "b"
+    },
+    "tool_use_id": "E1"
+   }
+  },
+  {
+   "ts": 2100,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Edit",
+    "tool_input": {
+     "file_path": "/home/user/project/notes.md",
+     "old_string": "a",
+     "new_string": "b"
+    },
+    "tool_response": {
+     "filePath": "/home/user/project/notes.md"
+    },
+    "tool_use_id": "E1",
+    "duration_ms": 40
+   }
+  },
+  {
+   "ts": 3000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Edit",
+    "tool_input": {
+     "file_path": "/home/user/project/notes.md",
+     "old_string": "x",
+     "new_string": "y"
+    },
+    "tool_use_id": "E2"
+   }
+  },
+  {
+   "ts": 3050,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000007.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000007/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000010",
+    "permission_mode": "default",
+    "hook_event_name": "PostToolUseFailure",
+    "tool_name": "Edit",
+    "tool_input": {
+     "file_path": "/home/user/project/notes.md",
+     "old_string": "x",
+     "new_string": "y"
+    },
+    "tool_use_id": "E2",
+    "error": "String to replace not found in file.",
+    "is_interrupt": false,
+    "duration_ms": 25
+   }
+  },
+  {
+   "ts": 4000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Write",
+    "tool_input": {
+     "file_path": "/home/user/project/todo.md",
+     "content": "- tea"
+    },
+    "tool_use_id": "W1"
+   }
+  },
+  {
+   "ts": 4200,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Write",
+    "tool_input": {
+     "file_path": "/home/user/project/todo.md",
+     "content": "- tea"
+    },
+    "tool_response": {
+     "type": "create"
+    },
+    "tool_use_id": "W1"
+   }
+  },
+  {
+   "ts": 5000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "NotebookEdit",
+    "tool_input": {
+     "notebook_path": "/home/user/project/a.ipynb",
+     "new_source": "print(1)"
+    },
+    "tool_use_id": "N1"
+   }
+  },
+  {
+   "ts": 5300,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PostToolUse",
+    "tool_name": "NotebookEdit",
+    "tool_input": {
+     "notebook_path": "/home/user/project/a.ipynb",
+     "new_source": "print(1)"
+    },
+    "tool_response": {},
+    "tool_use_id": "N1",
+    "duration_ms": 12
+   }
+  },
+  {
+   "ts": 6000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Read",
+    "tool_input": {
+     "file_path": "/home/user/project/notes.md"
+    },
+    "tool_use_id": "R1"
+   }
+  },
+  {
+   "ts": 6100,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Read",
+    "tool_input": {
+     "file_path": "/home/user/project/notes.md"
+    },
+    "tool_response": {
+     "type": "text"
+    },
+    "tool_use_id": "R1",
+    "duration_ms": 3
+   }
+  },
+  {
+   "ts": 7000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "touch spike-1a.txt",
+     "description": "Create empty file spike-1a.txt"
+    },
+    "tool_use_id": "B1"
+   }
+  },
+  {
+   "ts": 9000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000011",
+    "hook_event_name": "SessionEnd",
+    "reason": "prompt_input_exit"
+   }
+  }
+ ],
+ "facts": [],
+ "expect": {
+  "00000000-0000-4000-8000-0000000000aa": {
+   "v": 2,
+   "title": "project",
+   "headline": "Tidy the notes",
+   "startedAt": 1000,
+   "updatedAt": 9000,
+   "turns": 1,
+   "tokens": {
+    "total": 0,
+    "in": 0,
+    "out": 0,
+    "cw": 0,
+    "cr": 0,
+    "helpers": []
+   },
+   "waiting": null,
+   "agents": [
+    {
+     "id": "main",
+     "name": "Skybot",
+     "role": "Lead Agent",
+     "type": "lead",
+     "status": "idle",
+     "kind": "leave",
+     "tool": "",
+     "activity": "Left the city",
+     "activitySince": 9000,
+     "waiting": false,
+     "tools": 6,
+     "usage": {
+      "in": 0,
+      "out": 0,
+      "cw": 0,
+      "cr": 0
+     },
+     "model": "claude-haiku-4-5-20251001",
+     "models": [
+      "claude-haiku-4-5-20251001"
+     ]
+    }
+   ],
+   "feed": [
+    {
+     "ts": 9000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "leave",
+     "text": "Left the city"
+    },
+    {
+     "ts": 7000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "bash",
+     "text": "$ touch spike-1a.txt",
+     "tool": "Bash",
+     "toolUseId": "B1"
+    },
+    {
+     "ts": 6000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "read",
+     "text": "Reading notes.md",
+     "tool": "Read",
+     "toolUseId": "R1",
+     "durationMs": 3
+    },
+    {
+     "ts": 5000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "edit",
+     "text": "Editing a.ipynb",
+     "tool": "NotebookEdit",
+     "toolUseId": "N1",
+     "durationMs": 12
+    },
+    {
+     "ts": 4000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "write",
+     "text": "Writing todo.md",
+     "tool": "Write",
+     "toolUseId": "W1",
+     "durationMs": 200
+    },
+    {
+     "ts": 3050,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "error",
+     "text": "Edit failed: String to replace not found in file.",
+     "tool": "Edit",
+     "toolUseId": "E2"
+    },
+    {
+     "ts": 3000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "edit",
+     "text": "Editing notes.md",
+     "tool": "Edit",
+     "toolUseId": "E2",
+     "durationMs": 25
+    },
+    {
+     "ts": 2000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "edit",
+     "text": "Editing notes.md",
+     "tool": "Edit",
+     "toolUseId": "E1",
+     "durationMs": 40
+    },
+    {
+     "ts": 1500,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "prompt",
+     "text": "Tidy the notes"
+    },
+    {
+     "ts": 1000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "join",
+     "text": "Moved into the project district"
+    }
+   ],
+   "sessionName": "spike-approval-a",
+   "ended": {
+    "at": 9000,
+    "reason": "prompt_input_exit"
+   }
+  }
+ }
+}

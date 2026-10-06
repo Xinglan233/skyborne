@@ -1,0 +1,309 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "-s",
+              "-m",
+              "2",
+              "-H",
+              "Content-Type: application/json",
+              "--data-binary",
+              "@-",
+              "http://127.0.0.1:7317/hook"
+            ],
+            "async": true
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "-s",
+              "-m",
+              "2",
+              "-H",
+              "Content-Type: application/json",
+              "--data-binary",
+              "@-",
+              "http://127.0.0.1:7317/hook"
+            ],
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "-s",
+              "-m",
+              "2",
+              "-H",
+              "Content-Type: application/json",
+              "--data-binary",
+              "@-",
+              "http://127.0.0.1:7317/hook"
+            ],
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "-s",
+              "-m",
+              "2",
+              "-H",
+              "Content-Type: application/json",
+              "--data-binary",
+              "@-",
+              "http://127.0.0.1:7317/hook"
+            ],
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "-s",
+              "-m",
+              "2",
+              "-H",
+              "Content-Type: application/json",
+              "--data-binary",
+              "@-",
+              "http://127.0.0.1:7317/hook"
+            ],
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -sf -m 600 -H 'Content-Type: application/json' -H 'Expect:' -H 'X-Skyborne-Wait: 595' -H \"X-Skyborne-Entrypoint: $CLAUDE_CODE_ENTRYPOINT\" --data-binary '@-' http://127.0.0.1:7317/permission; exit 0",
+            "timeout": 600
+          }
+        ]
+      }
+    ],
+    "PermissionDenied": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "-s",
+              "-m",
+              "2",
+              "-H",
+              "Content-Type: application/json",
+              "--data-binary",
+              "@-",
+              "http://127.0.0.1:7317/hook"
+            ],
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "-s",
+              "-m",
+              "2",
+              "-H",
+              "Content-Type: application/json",
+              "--data-binary",
+              "@-",
+              "http://127.0.0.1:7317/hook"
+            ],
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "-s",
+              "-m",
+              "2",
+              "-H",
+              "Content-Type: application/json",
+              "--data-binary",
+              "@-",
+              "http://127.0.0.1:7317/hook"
+            ],
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "-s",
+              "-m",
+              "2",
+              "-H",
+              "Content-Type: application/json",
+              "--data-binary",
+              "@-",
+              "http://127.0.0.1:7317/hook"
+            ],
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "-s",
+              "-m",
+              "2",
+              "-H",
+              "Content-Type: application/json",
+              "--data-binary",
+              "@-",
+              "http://127.0.0.1:7317/hook"
+            ],
+            "async": true
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "-s",
+              "-m",
+              "2",
+              "-H",
+              "Content-Type: application/json",
+              "--data-binary",
+              "@-",
+              "http://127.0.0.1:7317/hook"
+            ],
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "-s",
+              "-m",
+              "2",
+              "-H",
+              "Content-Type: application/json",
+              "--data-binary",
+              "@-",
+              "http://127.0.0.1:7317/hook"
+            ],
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "-s",
+              "-m",
+              "2",
+              "-H",
+              "Content-Type: application/json",
+              "--data-binary",
+              "@-",
+              "http://127.0.0.1:7317/hook"
+            ],
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl",
+            "args": [
+              "-s",
+              "-m",
+              "2",
+              "-H",
+              "Content-Type: application/json",
+              "--data-binary",
+              "@-",
+              "http://127.0.0.1:7317/hook"
+            ],
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}

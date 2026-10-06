@@ -1,0 +1,16 @@
+{
+  "_source": "observed, run s1b, path /hook/SubagentStop",
+  "session_id": "00000000-0000-4000-8000-000000000012",
+  "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000012.jsonl",
+  "cwd": "/home/user/project",
+  "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000012/scratchpad",
+  "prompt_id": "00000000-0000-4000-8000-000000000013",
+  "permission_mode": "default",
+  "agent_id": "a0000000000000003",
+  "agent_type": "",
+  "hook_event_name": "SubagentStop",
+  "stop_hook_active": false,
+  "agent_transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000012/subagents/agent-a0000000000000003.jsonl",
+  "background_tasks": [],
+  "session_crons": []
+}

@@ -1,0 +1,24 @@
+    0.00s  statusline 
+    0.01s  cmdhook    SessionStart startup
+    0.02s  terminal   prompt-ready APPEARS
+    0.24s  keys       'Run exactly this bash command once and do not retry if refu
+    0.84s  keys       '\r'
+    0.87s  hook       UserPromptSubmit 
+    2.61s  statusline 
+    2.62s  hook       PreToolUse Bash id=..
+    2.63s  hook       PermissionRequest Bash
+    2.63s  server     hold-start PermissionRequest held_ms= 
+    2.70s  terminal   permission-dialog APPEARS
+    7.69s  server     replied PermissionRequest held_ms=5064 {"hookSpecificOutput": {"hookEventName": "PermissionRequest", "decision": {"behavior": "deny", "message": "Denied by the Skyborne spike server"}}}
+    7.72s  statusline 
+    7.76s  terminal   permission-dialog gone
+    7.76s  terminal   spinner-hook APPEARS
+   10.17s  hook       MessageDisplay 
+   10.19s  hook       Stop 
+   10.51s  statusline 
+   17.15s  hook       SubagentStop  agent_id=a000000000000000e
+   18.58s  keys       '/exit'
+   19.18s  keys       '\r'
+   19.21s  statusline 
+   19.71s  hook       SessionEnd prompt_input_exit
+   19.72s  cmdhook    SessionEnd prompt_input_exit

@@ -1,0 +1,32 @@
+{
+ "name": "continued-then-exit",
+ "expect": {
+  "id": "00000000-0000-4000-8000-0000000000aa",
+  "updatedAt": 15886,
+  "agents": [
+   {
+    "id": "main",
+    "name": "Skybot",
+    "role": "Lead Agent",
+    "type": "lead",
+    "parent": null,
+    "start": 1000,
+    "end": 15400
+   }
+  ],
+  "steps": [],
+  "conversation": [
+   {
+    "ts": 2000,
+    "who": "you",
+    "text": "Make the film"
+   },
+   {
+    "ts": 4000,
+    "who": "claude",
+    "text": "Done"
+   }
+  ],
+  "files": []
+ }
+}

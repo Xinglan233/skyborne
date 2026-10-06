@@ -1,0 +1,215 @@
+{
+ "name": "fork-counts-own-work",
+ "description": "A fork (here, a conversation moved to the background) starts with a copy of the conversation, old times and all: only what it did after its SessionStart counts, and a copied continued-in line doesn't end it. Its name is Claude's newest title.",
+ "now": 2000000,
+ "events": [
+  {
+   "ts": 50000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000012.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000012/scratchpad",
+    "hook_event_name": "SessionStart",
+    "source": "fork",
+    "model": "claude-haiku-4-5-20251001"
+   }
+  },
+  {
+   "ts": 30000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "hook_event_name": "SessionEnd",
+    "reason": "continued",
+    "continued_in": "00000000-0000-4000-8000-0000000000aa"
+   },
+   "source": "transcript"
+  },
+  {
+   "ts": 51000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "touch spike-1a.txt",
+     "description": "Create empty file spike-1a.txt"
+    },
+    "tool_use_id": "toolu_000000000000000000000003"
+   }
+  },
+  {
+   "ts": 52000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "touch spike-1a.txt",
+     "description": "Create empty file spike-1a.txt"
+    },
+    "tool_response": {
+     "stdout": "",
+     "stderr": "",
+     "interrupted": false,
+     "isImage": false,
+     "noOutputExpected": true
+    },
+    "tool_use_id": "toolu_000000000000000000000003",
+    "duration_ms": 82
+   }
+  }
+ ],
+ "facts": [
+  {
+   "ts": 10000,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_copied_1",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 5000,
+    "cw": 50,
+    "cr": 1000
+   }
+  },
+  {
+   "ts": 20000,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_copied_2",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 7000,
+    "cw": 50,
+    "cr": 1000
+   }
+  },
+  {
+   "ts": 51500,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_own_1",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 100,
+    "cw": 50,
+    "cr": 1000
+   }
+  },
+  {
+   "ts": 52500,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "usage",
+   "message_id": "msg_own_2",
+   "agent": "main",
+   "model": "claude-haiku-4-5-20251001",
+   "final": true,
+   "usage": {
+    "in": 10,
+    "out": 100,
+    "cw": 50,
+    "cr": 1000
+   }
+  },
+  {
+   "ts": 90000,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "title",
+   "title": "film-voice",
+   "custom": false,
+   "seq": 0
+  },
+  {
+   "ts": 90000,
+   "session_id": "00000000-0000-4000-8000-0000000000aa",
+   "kind": "title",
+   "title": "film-voice-retime",
+   "custom": false,
+   "seq": 1
+  }
+ ],
+ "expect": {
+  "00000000-0000-4000-8000-0000000000aa": {
+   "v": 2,
+   "title": "project",
+   "headline": "Continued from another session",
+   "startedAt": 50000,
+   "updatedAt": 52500,
+   "turns": 0,
+   "tokens": {
+    "total": 2320,
+    "in": 20,
+    "out": 200,
+    "cw": 100,
+    "cr": 2000,
+    "helpers": []
+   },
+   "waiting": null,
+   "agents": [
+    {
+     "id": "main",
+     "name": "Skybot",
+     "role": "Lead Agent",
+     "type": "lead",
+     "status": "working",
+     "kind": "bash",
+     "tool": "Bash",
+     "activity": "$ touch spike-1a.txt",
+     "activitySince": 51000,
+     "waiting": false,
+     "tools": 1,
+     "usage": {
+      "in": 20,
+      "out": 200,
+      "cw": 100,
+      "cr": 2000
+     },
+     "model": "claude-haiku-4-5-20251001",
+     "models": [
+      "claude-haiku-4-5-20251001"
+     ]
+    }
+   ],
+   "feed": [
+    {
+     "ts": 51000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "bash",
+     "text": "$ touch spike-1a.txt",
+     "tool": "Bash",
+     "toolUseId": "toolu_000000000000000000000003",
+     "durationMs": 82
+    },
+    {
+     "ts": 50000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "join",
+     "text": "Moved into the project district"
+    }
+   ],
+   "sessionName": "film-voice-retime"
+  }
+ }
+}

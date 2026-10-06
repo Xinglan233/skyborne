@@ -1,0 +1,310 @@
+{
+ "name": "helpers-midway",
+ "description": "A Stop while helpers still run leaves the lead working.",
+ "now": 2000000,
+ "events": [
+  {
+   "ts": 1000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000012.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000012/scratchpad",
+    "hook_event_name": "SessionStart",
+    "source": "startup",
+    "model": "claude-haiku-4-5-20251001",
+    "session_title": "spike-approval-b"
+   }
+  },
+  {
+   "ts": 1500,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "Count the lines in alpha.txt with a helper",
+    "session_title": "spike-approval-a"
+   }
+  },
+  {
+   "ts": 5430,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Agent",
+    "tool_input": {
+     "description": "count alpha lines",
+     "prompt": "Read the file sample/alpha.txt and count how many lines it contains. Report just the line count as a number.",
+     "subagent_type": "Explore"
+    },
+    "tool_use_id": "toolu_000000000000000000000002"
+   }
+  },
+  {
+   "ts": 5440,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000007.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000007/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000009",
+    "agent_id": "a0000000000000001",
+    "agent_type": "Explore",
+    "hook_event_name": "SubagentStart"
+   }
+  },
+  {
+   "ts": 5460,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000007.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000007/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000009",
+    "permission_mode": "default",
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Agent",
+    "tool_input": {
+     "description": "count alpha lines",
+     "prompt": "Read the file sample/alpha.txt and count how many lines it contains. Report just the line count as a number.",
+     "subagent_type": "Explore"
+    },
+    "tool_response": {
+     "isAsync": true,
+     "status": "async_launched",
+     "agentId": "a0000000000000001",
+     "description": "count alpha lines",
+     "resolvedModel": "claude-haiku-4-5-20251001",
+     "prompt": "Read the file sample/alpha.txt and count how many lines it contains. Report just the line count as a number.",
+     "outputFile": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000007/tasks/a0000000000000001.output",
+     "canReadOutputFile": true
+    },
+    "tool_use_id": "toolu_000000000000000000000002",
+    "duration_ms": 4
+   }
+  },
+  {
+   "ts": 7330,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000007.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000007/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000009",
+    "permission_mode": "default",
+    "agent_id": "a0000000000000001",
+    "agent_type": "Explore",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Read",
+    "tool_input": {
+     "file_path": "/home/user/project/sample/alpha.txt"
+    },
+    "tool_use_id": "toolu_000000000000000000000005"
+   }
+  },
+  {
+   "ts": 7340,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Read",
+    "tool_input": {
+     "file_path": "/home/user/project/sample/alpha.txt"
+    },
+    "tool_response": {
+     "type": "text"
+    },
+    "tool_use_id": "toolu_000000000000000000000005",
+    "duration_ms": 2,
+    "agent_id": "a0000000000000001",
+    "agent_type": "Explore"
+   }
+  },
+  {
+   "ts": 8200,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-0000000000aa",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000007.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000007/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000009",
+    "permission_mode": "default",
+    "hook_event_name": "Stop",
+    "stop_hook_active": false,
+    "last_assistant_message": "Both agents are now running. I'll wait for their results and reply once they complete.",
+    "background_tasks": [
+     {
+      "id": "a0000000000000001",
+      "type": "subagent",
+      "status": "running",
+      "description": "count alpha lines",
+      "agent_type": "Explore"
+     },
+     {
+      "id": "a0000000000000002",
+      "type": "subagent",
+      "status": "running",
+      "description": "find beta word",
+      "agent_type": "Explore"
+     }
+    ],
+    "session_crons": []
+   }
+  }
+ ],
+ "facts": [],
+ "expect": {
+  "00000000-0000-4000-8000-0000000000aa": {
+   "v": 2,
+   "title": "project",
+   "headline": "Both agents are now running. I'll wait for their results and reply once they complete.",
+   "startedAt": 1000,
+   "updatedAt": 8200,
+   "turns": 1,
+   "tokens": {
+    "total": 0,
+    "in": 0,
+    "out": 0,
+    "cw": 0,
+    "cr": 0,
+    "helpers": [
+     {
+      "id": "a0000000000000001",
+      "name": "Scout 1",
+      "role": "Explore Agent",
+      "usage": {
+       "in": 0,
+       "out": 0,
+       "cw": 0,
+       "cr": 0
+      },
+      "model": "claude-haiku-4-5-20251001"
+     }
+    ]
+   },
+   "waiting": null,
+   "agents": [
+    {
+     "id": "main",
+     "name": "Skybot",
+     "role": "Lead Agent",
+     "type": "lead",
+     "status": "working",
+     "kind": "think",
+     "tool": "",
+     "activity": "Waiting for 2 helpers",
+     "activitySince": 8200,
+     "waiting": false,
+     "tools": 1,
+     "usage": {
+      "in": 0,
+      "out": 0,
+      "cw": 0,
+      "cr": 0
+     },
+     "model": "claude-haiku-4-5-20251001",
+     "models": [
+      "claude-haiku-4-5-20251001"
+     ]
+    },
+    {
+     "id": "a0000000000000001",
+     "name": "Scout 1",
+     "role": "Explore Agent",
+     "type": "Explore",
+     "status": "working",
+     "kind": "read",
+     "tool": "Read",
+     "activity": "Reading alpha.txt",
+     "activitySince": 7330,
+     "waiting": false,
+     "tools": 1,
+     "usage": {
+      "in": 0,
+      "out": 0,
+      "cw": 0,
+      "cr": 0
+     },
+     "parent": "main",
+     "description": "count alpha lines",
+     "model": "claude-haiku-4-5-20251001",
+     "models": [
+      "claude-haiku-4-5-20251001"
+     ]
+    }
+   ],
+   "feed": [
+    {
+     "ts": 8200,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "answer",
+     "text": "Both agents are now running. I'll wait for their results and reply once they complete."
+    },
+    {
+     "ts": 7330,
+     "agent": "Scout 1",
+     "agentId": "a0000000000000001",
+     "kind": "read",
+     "text": "Reading alpha.txt",
+     "tool": "Read",
+     "toolUseId": "toolu_000000000000000000000005",
+     "durationMs": 2
+    },
+    {
+     "ts": 5440,
+     "agent": "Scout 1",
+     "agentId": "a0000000000000001",
+     "kind": "join",
+     "text": "Scout 1 beamed in"
+    },
+    {
+     "ts": 5440,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "spawn",
+     "text": "Brought in Scout 1: count alpha lines"
+    },
+    {
+     "ts": 5430,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "spawn",
+     "text": "Sending out a Scout",
+     "tool": "Agent",
+     "toolUseId": "toolu_000000000000000000000002",
+     "durationMs": 4
+    },
+    {
+     "ts": 1500,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "prompt",
+     "text": "Count the lines in alpha.txt with a helper"
+    },
+    {
+     "ts": 1000,
+     "agent": "Skybot",
+     "agentId": "main",
+     "kind": "join",
+     "text": "Moved into the project district"
+    }
+   ],
+   "sessionName": "spike-approval-a"
+  }
+ }
+}

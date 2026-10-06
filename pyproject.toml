@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=77"]  # 77: the SPDX `license` string below
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skyborne"
+version = "0.1.0"
+description = "A local monitor for Claude Code: records every session's events and turns them into live state."
+readme = "README.md"
+authors = [{ name = "Mirza Ishraq Yeahia" }]
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+requires-python = ">=3.11"
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+skyborne = "skyborne.__main__:main"
+
+[tool.setuptools]
+# only the package: without this, flat-layout discovery also finds page/ and plugin/ and refuses to build
+packages = ["skyborne"]
+
+[tool.setuptools.package-data]
+# the built city page (made by `cd page && node build.js`), so an installed Skyborne can serve it
+skyborne = ["web/*.html", "web/assets/**/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

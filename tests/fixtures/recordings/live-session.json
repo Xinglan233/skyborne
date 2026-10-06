@@ -1,0 +1,609 @@
+{
+ "events": [
+  {
+   "ts": 1791008593514,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "hook_event_name": "SessionStart",
+    "source": "startup",
+    "model": "claude-haiku-4-5-20251001"
+   }
+  },
+  {
+   "ts": 1791008620000,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "In ONE message, call the Agent tool twice in parallel, both with subagent_type Explore: one counts the lines in alpha.txt, the other finds the secret word in beta.txt. Tell each helper to use only the Read tool. Then report both answers."
+   }
+  },
+  {
+   "ts": 1791008623493,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Agent",
+    "tool_input": {
+     "description": "Count lines in alpha.txt",
+     "prompt": "Use the Read tool only. Read alpha.txt and count the total number of lines in it. Report just the number.",
+     "subagent_type": "Explore"
+    },
+    "tool_use_id": "toolu_000000000000000000000001"
+   }
+  },
+  {
+   "ts": 1791008623506,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "agent_id": "a0000000000000001",
+    "agent_type": "Explore",
+    "hook_event_name": "SubagentStart"
+   }
+  },
+  {
+   "ts": 1791008623513,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Agent",
+    "tool_input": {
+     "description": "Count lines in alpha.txt",
+     "prompt": "Use the Read tool only. Read alpha.txt and count the total number of lines in it. Report just the number.",
+     "subagent_type": "Explore"
+    },
+    "tool_response": {
+     "isAsync": true,
+     "status": "async_launched",
+     "agentId": "a0000000000000001",
+     "description": "Count lines in alpha.txt",
+     "resolvedModel": "claude-haiku-4-5-20251001",
+     "prompt": "Use the Read tool only. Read alpha.txt and count the total number of lines in it. Report just the number.",
+     "outputFile": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/tasks/a0000000000000001.output",
+     "canReadOutputFile": true
+    },
+    "tool_use_id": "toolu_000000000000000000000001",
+    "duration_ms": 5
+   }
+  },
+  {
+   "ts": 1791008623902,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Agent",
+    "tool_input": {
+     "description": "Find secret word in beta.txt",
+     "prompt": "Use the Read tool only. Read beta.txt and identify the secret word in it. Report just the word.",
+     "subagent_type": "Explore"
+    },
+    "tool_use_id": "toolu_000000000000000000000002"
+   }
+  },
+  {
+   "ts": 1791008623919,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "agent_id": "a0000000000000002",
+    "agent_type": "Explore",
+    "hook_event_name": "SubagentStart"
+   }
+  },
+  {
+   "ts": 1791008623927,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Agent",
+    "tool_input": {
+     "description": "Find secret word in beta.txt",
+     "prompt": "Use the Read tool only. Read beta.txt and identify the secret word in it. Report just the word.",
+     "subagent_type": "Explore"
+    },
+    "tool_response": {
+     "isAsync": true,
+     "status": "async_launched",
+     "agentId": "a0000000000000002",
+     "description": "Find secret word in beta.txt",
+     "resolvedModel": "claude-haiku-4-5-20251001",
+     "prompt": "Use the Read tool only. Read beta.txt and identify the secret word in it. Report just the word.",
+     "outputFile": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/tasks/a0000000000000002.output",
+     "canReadOutputFile": true
+    },
+    "tool_use_id": "toolu_000000000000000000000002",
+    "duration_ms": 4
+   }
+  },
+  {
+   "ts": 1791008625108,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "hook_event_name": "Stop",
+    "stop_hook_active": false,
+    "last_assistant_message": "Both agents are now working in the background. I'll report the results once they complete.",
+    "background_tasks": [
+     {
+      "id": "a0000000000000001",
+      "type": "subagent",
+      "status": "running",
+      "description": "Count lines in alpha.txt",
+      "agent_type": "Explore"
+     },
+     {
+      "id": "a0000000000000002",
+      "type": "subagent",
+      "status": "running",
+      "description": "Find secret word in beta.txt",
+      "agent_type": "Explore"
+     }
+    ],
+    "session_crons": []
+   }
+  },
+  {
+   "ts": 1791008625592,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "agent_id": "a0000000000000001",
+    "agent_type": "Explore",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Read",
+    "tool_input": {
+     "file_path": "/home/user/project/alpha.txt"
+    },
+    "tool_use_id": "toolu_000000000000000000000003"
+   }
+  },
+  {
+   "ts": 1791008625599,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "agent_id": "a0000000000000001",
+    "agent_type": "Explore",
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Read",
+    "tool_input": {
+     "file_path": "/home/user/project/alpha.txt"
+    },
+    "tool_response": {
+     "type": "text",
+     "file": {
+      "filePath": "/home/user/project/alpha.txt",
+      "content": "one\ntwo\nthree\nfour\n",
+      "numLines": 5,
+      "startLine": 1,
+      "totalLines": 5
+     }
+    },
+    "tool_use_id": "toolu_000000000000000000000003",
+    "duration_ms": 3
+   }
+  },
+  {
+   "ts": 1791008626048,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "agent_id": "a0000000000000002",
+    "agent_type": "Explore",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Read",
+    "tool_input": {
+     "file_path": "/home/user/project/beta.txt"
+    },
+    "tool_use_id": "toolu_000000000000000000000004"
+   }
+  },
+  {
+   "ts": 1791008626058,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "agent_id": "a0000000000000002",
+    "agent_type": "Explore",
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Read",
+    "tool_input": {
+     "file_path": "/home/user/project/beta.txt"
+    },
+    "tool_response": {
+     "type": "text",
+     "file": {
+      "filePath": "/home/user/project/beta.txt",
+      "content": "The secret word is pineapple.\n",
+      "numLines": 2,
+      "startLine": 1,
+      "totalLines": 2
+     }
+    },
+    "tool_use_id": "toolu_000000000000000000000004",
+    "duration_ms": 5
+   }
+  },
+  {
+   "ts": 1791008626821,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000002",
+    "permission_mode": "default",
+    "agent_id": "a0000000000000001",
+    "agent_type": "Explore",
+    "hook_event_name": "SubagentStop",
+    "stop_hook_active": false,
+    "agent_transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001/subagents/agent-a0000000000000001.jsonl",
+    "last_assistant_message": "5",
+    "background_tasks": [
+     {
+      "id": "a0000000000000001",
+      "type": "subagent",
+      "status": "running",
+      "description": "Count lines in alpha.txt",
+      "agent_type": "Explore"
+     },
+     {
+      "id": "a0000000000000002",
+      "type": "subagent",
+      "status": "running",
+      "description": "Find secret word in beta.txt",
+      "agent_type": "Explore"
+     }
+    ],
+    "session_crons": []
+   }
+  },
+  {
+   "ts": 1791008626862,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000003",
+    "permission_mode": "default",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "<task-notification>\n<task-id>a0000000000000001</task-id>\n<tool-use-id>toolu_000000000000000000000001</tool-use-id>\n<output-file>/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/tasks/a0000000000000001.output</output-file>\n<status>completed</status>\n<summary>Agent \"Count lines in alpha.txt\" finished</summary>\n<note>A task-notification fires each time this agent stops with no live background children of its own. The user can send it another message and resume it, so the same task-id may notify more than once.</note>\n<result>5</result>\n<usage><subagent_tokens>13838</subagent_tokens><tool_uses>1</tool_uses><duration_ms>3336</duration_ms></usage>\n</task-notification>"
+   }
+  },
+  {
+   "ts": 1791008627180,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000003",
+    "permission_mode": "default",
+    "agent_id": "a0000000000000002",
+    "agent_type": "Explore",
+    "hook_event_name": "SubagentStop",
+    "stop_hook_active": false,
+    "agent_transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001/subagents/agent-a0000000000000002.jsonl",
+    "last_assistant_message": "pineapple",
+    "background_tasks": [
+     {
+      "id": "a0000000000000002",
+      "type": "subagent",
+      "status": "running",
+      "description": "Find secret word in beta.txt",
+      "agent_type": "Explore"
+     }
+    ],
+    "session_crons": []
+   }
+  },
+  {
+   "ts": 1791008628116,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000003",
+    "permission_mode": "default",
+    "hook_event_name": "Stop",
+    "stop_hook_active": false,
+    "last_assistant_message": "First result in: **alpha.txt has 5 lines**. Waiting for the second agent to find the secret word in beta.txt...",
+    "background_tasks": [],
+    "session_crons": []
+   }
+  },
+  {
+   "ts": 1791008628127,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000004",
+    "permission_mode": "default",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "<task-notification>\n<task-id>a0000000000000002</task-id>\n<tool-use-id>toolu_000000000000000000000002</tool-use-id>\n<output-file>/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/tasks/a0000000000000002.output</output-file>\n<status>completed</status>\n<summary>Agent \"Find secret word in beta.txt\" finished</summary>\n<note>A task-notification fires each time this agent stops with no live background children of its own. The user can send it another message and resume it, so the same task-id may notify more than once.</note>\n<result>pineapple</result>\n<usage><subagent_tokens>13830</subagent_tokens><tool_uses>1</tool_uses><duration_ms>3278</duration_ms></usage>\n</task-notification>"
+   }
+  },
+  {
+   "ts": 1791008628759,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000004",
+    "permission_mode": "default",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "Run exactly this bash command and nothing else: touch made-by-test.txt"
+   }
+  },
+  {
+   "ts": 1791008629474,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000004",
+    "permission_mode": "default",
+    "hook_event_name": "Stop",
+    "stop_hook_active": false,
+    "last_assistant_message": "Both agents have completed. Here are the results:\n\n- **alpha.txt**: 5 lines\n- **beta.txt**: The secret word is **pineapple**",
+    "background_tasks": [],
+    "session_crons": []
+   }
+  },
+  {
+   "ts": 1791008629861,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000005",
+    "permission_mode": "default",
+    "agent_id": "a0000000000000003",
+    "agent_type": "",
+    "hook_event_name": "SubagentStop",
+    "stop_hook_active": false,
+    "agent_transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001/subagents/agent-a0000000000000003.jsonl",
+    "background_tasks": [],
+    "session_crons": []
+   }
+  },
+  {
+   "ts": 1791008630906,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000005",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "touch made-by-test.txt"
+    },
+    "tool_use_id": "toolu_000000000000000000000005"
+   }
+  },
+  {
+   "ts": 1791008630926,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000005",
+    "permission_mode": "default",
+    "hook_event_name": "PermissionRequest",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "touch made-by-test.txt"
+    },
+    "permission_suggestions": [
+     {
+      "type": "addDirectories",
+      "directories": [
+       "/home/user/project"
+      ],
+      "destination": "session"
+     },
+     {
+      "type": "setMode",
+      "mode": "acceptEdits",
+      "destination": "session"
+     }
+    ]
+   }
+  },
+  {
+   "ts": 1791008632088,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000005",
+    "permission_mode": "default",
+    "hook_event_name": "PostToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "touch made-by-test.txt"
+    },
+    "tool_response": {
+     "stdout": "",
+     "stderr": "",
+     "interrupted": false,
+     "isImage": false,
+     "noOutputExpected": true
+    },
+    "tool_use_id": "toolu_000000000000000000000005",
+    "duration_ms": 89
+   }
+  },
+  {
+   "ts": 1791008632832,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000005",
+    "permission_mode": "default",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "Run exactly this bash command and nothing else: touch made-second.txt"
+   }
+  },
+  {
+   "ts": 1791008632995,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000005",
+    "permission_mode": "default",
+    "hook_event_name": "Stop",
+    "stop_hook_active": false,
+    "last_assistant_message": "Done.",
+    "background_tasks": [],
+    "session_crons": []
+   }
+  },
+  {
+   "ts": 1791008634039,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000006",
+    "permission_mode": "default",
+    "hook_event_name": "PreToolUse",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "touch made-second.txt"
+    },
+    "tool_use_id": "toolu_000000000000000000000006"
+   }
+  },
+  {
+   "ts": 1791008634051,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000006",
+    "permission_mode": "default",
+    "hook_event_name": "PermissionRequest",
+    "tool_name": "Bash",
+    "tool_input": {
+     "command": "touch made-second.txt"
+    },
+    "permission_suggestions": [
+     {
+      "type": "addDirectories",
+      "directories": [
+       "/home/user/project"
+      ],
+      "destination": "session"
+     },
+     {
+      "type": "setMode",
+      "mode": "acceptEdits",
+      "destination": "session"
+     }
+    ]
+   }
+  },
+  {
+   "ts": 1791008638587,
+   "payload": {
+    "session_id": "00000000-0000-4000-8000-000000000001",
+    "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+    "cwd": "/home/user/project",
+    "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+    "prompt_id": "00000000-0000-4000-8000-000000000007",
+    "hook_event_name": "SessionEnd",
+    "reason": "prompt_input_exit"
+   }
+  }
+ ],
+ "counts": {
+  "PermissionRequest": 2,
+  "PostToolUse": 5,
+  "PreToolUse": 6,
+  "SessionEnd": 1,
+  "SessionStart": 1,
+  "Stop": 4,
+  "SubagentStart": 2,
+  "SubagentStop": 3,
+  "UserPromptSubmit": 5
+ },
+ "timings": {
+  "claude launched -> first doc": 1.0137219429016113,
+  "dialog on screen -> waiting in /events": -0.005439043045043945,
+  "Yes typed -> waiting cleared": 0.2161881923675537,
+  "No typed -> waiting cleared (via transcript)": 0.41480565071105957
+ }
+}

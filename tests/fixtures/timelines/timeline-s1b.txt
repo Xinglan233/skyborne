@@ -1,0 +1,74 @@
+    0.00s  terminal   prompt-ready APPEARS
+    0.02s  statusline 
+    0.02s  cmdhook    SessionStart startup
+    0.21s  keys       'Run exactly this bash command and nothing else: touch spike
+    0.81s  keys       '\r'
+    0.84s  hook       UserPromptSubmit 
+    2.54s  statusline 
+    2.69s  hook       PreToolUse Bash id=..
+    2.71s  hook       PermissionRequest Bash
+    2.71s  server     hold-start PermissionRequest held_ms= 
+    2.78s  terminal   permission-dialog APPEARS
+    8.72s  hook       Notification permission_prompt
+   62.80s  server     replied PermissionRequest held_ms=60088 
+   81.40s  keys       '3'
+   81.43s  statusline 
+   81.47s  terminal   permission-dialog gone
+   97.05s  keys       'Run exactly this bash command and nothing else: touch spike
+   97.65s  keys       '\r'
+   97.67s  hook       UserPromptSubmit 
+   99.47s  statusline 
+   99.60s  hook       PreToolUse Bash id=..
+   99.60s  hook       PermissionRequest Bash
+   99.60s  server     hold-start PermissionRequest held_ms= 
+   99.61s  terminal   spinner-hook APPEARS
+   99.73s  terminal   permission-dialog APPEARS
+   99.73s  terminal   spinner-hook gone
+  105.61s  hook       Notification permission_prompt
+  109.67s  server     replied PermissionRequest held_ms=10066 {"hookSpecificOutput": {"hookEventName": "PermissionRequest", "decision": {"behavior": "allow"}}}
+  109.70s  statusline 
+  109.75s  hook       PostToolUse Bash duration_ms=73 id=..
+  109.77s  terminal   permission-dialog gone
+  109.77s  terminal   spinner-hook APPEARS
+  110.83s  hook       MessageDisplay 
+  110.83s  hook       Stop 
+  111.14s  statusline 
+  115.38s  hook       SubagentStop  agent_id=a0000000000000003
+  123.51s  keys       'Run exactly this bash command and nothing else: touch spike
+  124.11s  keys       '\r'
+  124.13s  hook       UserPromptSubmit 
+  125.57s  hook       PreToolUse Bash id=..
+  125.58s  hook       PermissionRequest Bash
+  125.58s  server     hold-start PermissionRequest held_ms= 
+  125.59s  terminal   permission-dialog APPEARS
+  128.72s  keys       '1'
+  128.74s  statusline 
+  128.75s  hook       PostToolUse Bash duration_ms=23 id=..
+  128.76s  terminal   permission-dialog gone
+  129.73s  hook       MessageDisplay 
+  129.74s  hook       Stop 
+  130.05s  statusline 
+  134.45s  hook       SubagentStop  agent_id=a0000000000000004
+  155.65s  server     replied PermissionRequest held_ms=30067 {"hookSpecificOutput": {"hookEventName": "PermissionRequest", "decision": {"behavior": "allow"}}}
+  173.78s  keys       'Run exactly this bash command and nothing else: touch spike
+  174.38s  keys       '\r'
+  174.40s  hook       UserPromptSubmit 
+  175.78s  hook       PreToolUse Bash id=..
+  175.79s  hook       PermissionRequest Bash
+  175.79s  server     hold-start PermissionRequest held_ms= 
+  175.90s  terminal   permission-dialog APPEARS
+  178.99s  keys       '3'
+  179.02s  terminal   permission-dialog gone
+  179.02s  server     client-gone PermissionRequest held_ms=3231 
+  179.02s  terminal   prompt-ready gone
+  179.02s  terminal   spinner-hook gone
+  179.03s  statusline 
+  179.13s  terminal   prompt-ready APPEARS
+  179.13s  terminal   spinner-hook APPEARS
+  207.11s  keys       '\x1b'
+  207.13s  keys       '/exit'
+  207.15s  terminal   spinner-hook gone
+  207.74s  keys       '\r'
+  207.76s  statusline 
+  208.26s  hook       SessionEnd prompt_input_exit
+  208.27s  cmdhook    SessionEnd prompt_input_exit

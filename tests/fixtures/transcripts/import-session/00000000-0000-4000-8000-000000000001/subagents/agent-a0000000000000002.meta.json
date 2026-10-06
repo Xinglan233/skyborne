@@ -1,0 +1,8 @@
+{
+  "agentType": "Explore",
+  "description": "Find secret word in beta.txt",
+  "toolUseId": "toolu_000000000000000000000002",
+  "spawnDepth": 1,
+  "requestShape": "background",
+  "requestNonInteractive": true
+}

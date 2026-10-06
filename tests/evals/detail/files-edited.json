@@ -1,0 +1,116 @@
+{
+ "name": "files-edited",
+ "expect": {
+  "id": "00000000-0000-4000-8000-0000000000aa",
+  "updatedAt": 9000,
+  "agents": [
+   {
+    "id": "main",
+    "name": "Skybot",
+    "role": "Lead Agent",
+    "type": "lead",
+    "parent": null,
+    "start": 1000,
+    "end": 9000
+   }
+  ],
+  "steps": [
+   {
+    "id": "E1",
+    "agent": "main",
+    "tool": "Edit",
+    "kind": "edit",
+    "text": "Editing notes.md",
+    "start": 2000,
+    "end": 2100,
+    "ms": 40,
+    "outcome": "ok",
+    "error": ""
+   },
+   {
+    "id": "E2",
+    "agent": "main",
+    "tool": "Edit",
+    "kind": "edit",
+    "text": "Editing notes.md",
+    "start": 3000,
+    "end": 3050,
+    "ms": 25,
+    "outcome": "failed",
+    "error": "String to replace not found in file."
+   },
+   {
+    "id": "W1",
+    "agent": "main",
+    "tool": "Write",
+    "kind": "write",
+    "text": "Writing todo.md",
+    "start": 4000,
+    "end": 4200,
+    "ms": 200,
+    "outcome": "ok",
+    "error": ""
+   },
+   {
+    "id": "N1",
+    "agent": "main",
+    "tool": "NotebookEdit",
+    "kind": "edit",
+    "text": "Editing a.ipynb",
+    "start": 5000,
+    "end": 5300,
+    "ms": 12,
+    "outcome": "ok",
+    "error": ""
+   },
+   {
+    "id": "R1",
+    "agent": "main",
+    "tool": "Read",
+    "kind": "read",
+    "text": "Reading notes.md",
+    "start": 6000,
+    "end": 6100,
+    "ms": 3,
+    "outcome": "ok",
+    "error": ""
+   },
+   {
+    "id": "B1",
+    "agent": "main",
+    "tool": "Bash",
+    "kind": "bash",
+    "text": "$ touch spike-1a.txt",
+    "start": 7000,
+    "end": 9000,
+    "ms": null,
+    "outcome": null,
+    "error": ""
+   }
+  ],
+  "conversation": [
+   {
+    "ts": 1500,
+    "who": "you",
+    "text": "Tidy the notes"
+   }
+  ],
+  "files": [
+   {
+    "path": "/home/user/project/notes.md",
+    "edits": 1,
+    "failed": 1
+   },
+   {
+    "path": "/home/user/project/a.ipynb",
+    "edits": 1,
+    "failed": 0
+   },
+   {
+    "path": "/home/user/project/todo.md",
+    "edits": 1,
+    "failed": 0
+   }
+  ]
+ }
+}

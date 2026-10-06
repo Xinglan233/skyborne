@@ -1,0 +1,8 @@
+{
+  "agentType": "Explore",
+  "description": "find beta word",
+  "toolUseId": "toolu_000000000000000000000006",
+  "spawnDepth": 1,
+  "requestShape": "background",
+  "requestNonInteractive": true
+}

@@ -1,0 +1,34 @@
+{
+ "name": "tool-failure",
+ "expect": {
+  "id": "00000000-0000-4000-8000-0000000000aa",
+  "updatedAt": 1025,
+  "agents": [
+   {
+    "id": "main",
+    "name": "Skybot",
+    "role": "Lead Agent",
+    "type": "lead",
+    "parent": null,
+    "start": 1000,
+    "end": null
+   }
+  ],
+  "steps": [
+   {
+    "id": "toolu_000000000000000000000004",
+    "agent": "main",
+    "tool": "Bash",
+    "kind": "bash",
+    "text": "$ ls /nonexistent-skyborne-dir",
+    "start": 1000,
+    "end": 1025,
+    "ms": 25,
+    "outcome": "failed",
+    "error": "Exit code 1\nls: /nonexistent-skyborne-dir: No such file or directory"
+   }
+  ],
+  "conversation": [],
+  "files": []
+ }
+}

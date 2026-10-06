@@ -1,0 +1,45 @@
+{
+ "name": "waiting-cleared-by-next-prompt",
+ "expect": {
+  "id": "00000000-0000-4000-8000-0000000000aa",
+  "updatedAt": 6000,
+  "agents": [
+   {
+    "id": "main",
+    "name": "Skybot",
+    "role": "Lead Agent",
+    "type": "lead",
+    "parent": null,
+    "start": 1000,
+    "end": null
+   }
+  ],
+  "steps": [
+   {
+    "id": "toolu_000000000000000000000003",
+    "agent": "main",
+    "tool": "Bash",
+    "kind": "bash",
+    "text": "$ touch spike-1a.txt",
+    "start": 3000,
+    "end": null,
+    "ms": null,
+    "outcome": null,
+    "error": ""
+   }
+  ],
+  "conversation": [
+   {
+    "ts": 2000,
+    "who": "you",
+    "text": "Run exactly this bash command and nothing else: touch spike-1a.txt"
+   },
+   {
+    "ts": 6000,
+    "who": "you",
+    "text": "Never mind"
+   }
+  ],
+  "files": []
+ }
+}

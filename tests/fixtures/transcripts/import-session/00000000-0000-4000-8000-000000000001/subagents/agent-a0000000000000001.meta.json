@@ -1,0 +1,8 @@
+{
+  "agentType": "Explore",
+  "description": "Count lines in alpha.txt",
+  "toolUseId": "toolu_000000000000000000000001",
+  "spawnDepth": 1,
+  "requestShape": "background",
+  "requestNonInteractive": true
+}

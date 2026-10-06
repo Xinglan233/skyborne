@@ -1,0 +1,30 @@
+    0.00s  statusline 
+    0.10s  terminal   prompt-ready APPEARS
+  217.46s  keys       'Run exactly this bash command and nothing else: touch spike
+  218.06s  keys       '\r'
+  218.12s  hook       UserPromptSubmit 
+  218.12s  terminal   spinner-hook APPEARS
+  218.22s  terminal   spinner-hook gone
+  220.24s  statusline 
+  220.26s  hook       PreToolUse Bash id=..
+  220.27s  terminal   spinner-hook APPEARS
+  220.27s  hook       PermissionRequest Bash
+  220.27s  server     hold-start PermissionRequest held_ms= 
+  220.41s  terminal   permission-dialog APPEARS
+  220.41s  terminal   spinner-hook gone
+  225.28s  server     client-gone PermissionRequest held_ms=5005 
+  226.28s  hook       Notification permission_prompt
+  241.56s  keys       '\r'
+  241.59s  statusline 
+  241.65s  hook       PostToolUse Bash duration_ms=82 id=..
+  241.65s  terminal   permission-dialog gone
+  241.65s  terminal   spinner-hook APPEARS
+  241.77s  terminal   spinner-hook gone
+  242.67s  hook       MessageDisplay 
+  242.67s  hook       Stop 
+  242.99s  statusline 
+  254.32s  keys       '/exit'
+  254.93s  keys       '\r'
+  254.96s  statusline 
+  255.46s  hook       SessionEnd prompt_input_exit
+  255.48s  cmdhook    SessionEnd prompt_input_exit

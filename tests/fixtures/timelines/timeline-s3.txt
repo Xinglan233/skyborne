@@ -1,0 +1,54 @@
+    0.00s  statusline 
+    0.01s  cmdhook    SessionStart startup
+    0.03s  terminal   prompt-ready APPEARS
+    0.19s  keys       "Run exactly this bash command once: curl -s -o /dev/null -w
+    0.79s  keys       '\r'
+    0.82s  hook       UserPromptSubmit 
+    4.13s  hook       PreToolUse Bash id=..
+    4.45s  statusline 
+    5.11s  hook       PermissionDenied Bash id=..
+    5.43s  statusline 
+    7.89s  hook       MessageDisplay 
+    7.90s  hook       Stop 
+    8.22s  statusline 
+   11.10s  hook       SubagentStop  agent_id=a000000000000000c
+   21.35s  keys       'Write a numbered list of 40 different fruits, one per line,
+   21.96s  keys       '\r'
+   21.97s  hook       UserPromptSubmit 
+   24.37s  hook       MessageDisplay 
+   24.48s  hook       MessageDisplay 
+   24.82s  hook       MessageDisplay 
+   24.93s  hook       MessageDisplay 
+   25.26s  hook       MessageDisplay 
+   25.36s  hook       MessageDisplay 
+   25.68s  hook       MessageDisplay 
+   25.78s  hook       MessageDisplay 
+   26.13s  hook       MessageDisplay 
+   26.23s  hook       MessageDisplay 
+   26.58s  hook       MessageDisplay 
+   26.68s  hook       MessageDisplay 
+   27.02s  hook       MessageDisplay 
+   27.12s  hook       MessageDisplay 
+   27.47s  hook       MessageDisplay 
+   27.57s  hook       MessageDisplay 
+   27.86s  hook       MessageDisplay 
+   27.96s  hook       MessageDisplay 
+   28.35s  hook       MessageDisplay 
+   28.45s  hook       MessageDisplay 
+   28.79s  hook       MessageDisplay 
+   28.89s  hook       MessageDisplay 
+   29.23s  hook       MessageDisplay 
+   29.33s  hook       MessageDisplay 
+   29.71s  hook       MessageDisplay 
+   29.81s  hook       MessageDisplay 
+   30.12s  hook       MessageDisplay 
+   30.22s  hook       MessageDisplay 
+   30.46s  hook       MessageDisplay 
+   30.49s  hook       Stop 
+   30.80s  statusline 
+   32.31s  hook       SubagentStop  agent_id=a000000000000000d
+   48.40s  keys       '/exit'
+   49.01s  keys       '\r'
+   49.03s  statusline 
+   49.54s  hook       SessionEnd prompt_input_exit
+   49.55s  cmdhook    SessionEnd prompt_input_exit

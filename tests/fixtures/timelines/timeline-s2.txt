@@ -1,0 +1,116 @@
+    0.00s  statusline 
+    0.01s  cmdhook    SessionStart startup
+    0.03s  terminal   prompt-ready APPEARS
+    0.15s  keys       'In ONE message, call the Agent tool twice in parallel, both
+    0.75s  keys       '\r'
+    0.78s  hook       UserPromptSubmit 
+    5.33s  statusline 
+    5.43s  hook       PreToolUse Agent id=..
+    5.45s  hook       SubagentStart Explore agent_id=a0000000000000001
+    5.46s  hook       PostToolUse Agent duration_ms=4 id=..
+    5.47s  terminal   spinner-hook APPEARS
+    5.58s  terminal   spinner-hook gone
+    5.75s  statusline 
+    5.76s  cmdhook    subagentStatusLine 
+    5.88s  hook       PreToolUse Agent id=..
+    5.89s  hook       PostToolUse Agent duration_ms=2 id=..
+    5.89s  hook       SubagentStart Explore agent_id=a0000000000000002
+    5.92s  terminal   spinner-hook APPEARS
+    6.03s  terminal   spinner-hook gone
+    6.20s  cmdhook    subagentStatusLine 
+    6.24s  statusline 
+    7.33s  hook       PreToolUse Read id=.. agent_id=a0000000000000001
+    7.34s  hook       PostToolUse Read duration_ms=2 id=.. agent_id=a0000000000000001
+    7.70s  hook       PreToolUse Read id=.. agent_id=a0000000000000002
+    7.70s  hook       PostToolUse Read duration_ms=1 id=.. agent_id=a0000000000000002
+    8.20s  hook       MessageDisplay 
+    8.20s  hook       Stop 
+    8.52s  statusline 
+    8.76s  hook       SubagentStop Explore agent_id=a0000000000000001
+    8.78s  hook       UserPromptSubmit 
+    9.07s  hook       SubagentStop Explore agent_id=a0000000000000002
+   10.15s  statusline 
+   10.18s  hook       MessageDisplay 
+   10.19s  hook       Stop 
+   10.20s  hook       UserPromptSubmit 
+   10.51s  statusline 
+   10.90s  cmdhook    subagentStatusLine 
+   11.25s  hook       SubagentStop  agent_id=a0000000000000005
+   11.60s  hook       MessageDisplay 
+   11.60s  hook       Stop 
+   11.92s  statusline 
+   14.86s  hook       SubagentStop  agent_id=a0000000000000006
+   14.96s  hook       SubagentStop  agent_id=a0000000000000007
+   15.90s  cmdhook    subagentStatusLine 
+   20.91s  cmdhook    subagentStatusLine 
+   25.91s  cmdhook    subagentStatusLine 
+   30.91s  cmdhook    subagentStatusLine 
+   35.91s  cmdhook    subagentStatusLine 
+   53.72s  keys       'Run these two bash commands, one at a time, exactly as writ
+   54.32s  keys       '\r'
+   54.34s  hook       UserPromptSubmit 
+   56.14s  hook       PreToolUse Bash id=..
+   56.15s  statusline 
+   56.46s  statusline 
+   58.22s  hook       PostToolUse Bash duration_ms=2069 id=..
+   58.22s  terminal   spinner-hook APPEARS
+   58.35s  terminal   spinner-hook gone
+   58.54s  statusline 
+   59.31s  hook       PreToolUse Bash id=..
+   59.32s  terminal   spinner-hook APPEARS
+   59.32s  hook       PermissionRequest Bash
+   59.32s  server     hold-start PermissionRequest held_ms= 
+   59.44s  terminal   permission-dialog APPEARS
+   59.45s  terminal   spinner-hook gone
+   59.84s  server     replied PermissionRequest held_ms=515 {"hookSpecificOutput": {"hookEventName": "PermissionRequest", "decision": {"behavior": "allow"}}}
+   59.87s  statusline 
+   59.87s  hook       PostToolUseFailure Bash duration_ms=25 id=..
+   59.92s  terminal   permission-dialog gone
+   59.92s  terminal   spinner-hook APPEARS
+   61.52s  hook       MessageDisplay 
+   61.52s  hook       Stop 
+   61.71s  keys       "Now call the Agent tool exactly once with subagent_type Exp
+   61.84s  statusline 
+   62.32s  keys       '\r'
+   62.33s  hook       UserPromptSubmit 
+   65.92s  statusline 
+   66.12s  hook       PreToolUse Agent id=..
+   66.13s  hook       PostToolUse Agent duration_ms=3 id=..
+   66.13s  hook       SubagentStart Explore agent_id=a0000000000000008
+   66.45s  cmdhook    subagentStatusLine 
+   66.51s  statusline 
+   67.62s  hook       MessageDisplay 
+   67.62s  hook       Stop 
+   67.94s  statusline 
+   68.08s  hook       PreToolUse Bash id=.. agent_id=a0000000000000008
+   68.10s  hook       PostToolUse Bash duration_ms=19 id=.. agent_id=a0000000000000008
+   69.85s  hook       PreToolUse Bash id=.. agent_id=a0000000000000008
+   69.87s  hook       PostToolUse Bash duration_ms=14 id=.. agent_id=a0000000000000008
+   71.11s  hook       SubagentStop Explore agent_id=a0000000000000008
+   71.11s  hook       UserPromptSubmit 
+   71.15s  cmdhook    subagentStatusLine 
+   71.57s  hook       SubagentStop  agent_id=a0000000000000009
+   72.30s  hook       MessageDisplay 
+   72.30s  hook       Stop 
+   72.62s  statusline 
+   76.17s  cmdhook    subagentStatusLine 
+   76.37s  hook       SubagentStop  agent_id=a000000000000000a
+   81.16s  cmdhook    subagentStatusLine 
+   86.16s  cmdhook    subagentStatusLine 
+   91.16s  cmdhook    subagentStatusLine 
+   96.16s  cmdhook    subagentStatusLine 
+   99.37s  keys       '/compact'
+   99.44s  terminal   spinner-hook gone
+   99.98s  keys       '\r'
+   99.99s  hook       PreCompact 
+  100.01s  statusline 
+  100.30s  cmdhook    subagentStatusLine 
+  114.97s  hook       SubagentStop  agent_id=a000000000000000b
+  114.98s  cmdhook    SessionStart compact
+  114.98s  hook       PostCompact 
+  115.31s  statusline 
+  118.35s  keys       '/exit'
+  118.96s  keys       '\r'
+  118.97s  statusline 
+  119.48s  hook       SessionEnd prompt_input_exit
+  119.49s  cmdhook    SessionEnd prompt_input_exit

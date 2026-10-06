@@ -1,0 +1,33 @@
+# Local data
+*.db
+.skyborne/
+.env
+tmp/
+
+# Raw captures from real sessions (may hold prompts, paths and ids)
+fixtures/raw/
+
+# Research spike files: never committed
+skyborne-spike/
+SPIKE_REPORT.md
+capture*.jsonl
+control.json
+runs/
+spike*.txt
+
+# Local Claude Code files
+CLAUDE.local.md
+.claude/
+.venv/
+__pycache__/
+*.egg-info/
+build/
+wheel/
+.pytest_cache/
+
+# Page build
+node_modules/
+page/dist/smoke*.png
+
+# Brand work (logo drafts, brand guide): kept local, never committed
+/brand/

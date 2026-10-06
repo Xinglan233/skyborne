@@ -1,0 +1,10 @@
+{
+  "_source": "observed, run s1a, path /cmdhook/SessionEnd",
+  "session_id": "00000000-0000-4000-8000-000000000001",
+  "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000001.jsonl",
+  "cwd": "/home/user/project",
+  "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000001/scratchpad",
+  "prompt_id": "00000000-0000-4000-8000-000000000011",
+  "hook_event_name": "SessionEnd",
+  "reason": "prompt_input_exit"
+}

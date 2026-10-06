@@ -1,0 +1,61 @@
+"""The commands Claude Code runs (silent, never failing) and `skyborne doctor`."""
+import json
+import os
+import subprocess
+import sys
+
+from conftest import payload, wait_until
+from test_server import stored
+
+
+def run(*args, stdin=b'', env=None):
+    return subprocess.run([sys.executable, '-m', 'skyborne', *args], input=stdin, capture_output=True, timeout=60,
+                          env={**os.environ, **(env or {})})
+
+
+def test_hook_is_silent_and_exits_0_when_the_server_is_down():
+    for args in (['hook', '--port', '1'], ['hook', '--port', 'not-a-number'], ['hook', '--nonsense']):
+        r = run(*args, stdin=b'{"hook_event_name": "Stop"}')
+        assert (r.returncode, r.stdout, r.stderr) == (0, b'', b''), args
+
+
+def test_hook_forwards_to_the_server(app):
+    r = run('hook', '--port', str(app.port), stdin=json.dumps(payload('Stop.json')).encode())
+    assert (r.returncode, r.stdout) == (0, b'')
+    assert wait_until(lambda: stored(app) == 1)
+
+
+def test_statusline_prints_a_short_line_even_with_the_server_down():
+    r = run('statusline', '--port', '1', stdin=json.dumps(payload('statusLine-with-rate-limits.json')).encode())
+    assert r.returncode == 0
+    assert r.stdout.decode().strip() == 'Skyborne · Haiku 4.5 · $0.06 · Context 21%'
+
+
+def test_doctor_explains_a_fresh_machine():
+    r = run('doctor', '--port', '1')
+    out = r.stdout.decode()
+    assert 'The plugin is not installed. Run `skyborne install`.' in out
+    assert r.returncode == 1  # a problem was found
+
+
+def test_doctor_is_happy_once_installed(app):
+    assert run('install', '--port', str(app.port), '--no-statusline').returncode == 0
+    r = run('doctor', '--port', str(app.port))
+    out = r.stdout.decode()
+    assert 'The server is running' in out and 'The plugin is installed' in out
+    assert 'Problem' not in out or 'curl is not on PATH' in out
+
+
+def test_doctor_notices_an_older_plugin_or_a_changed_timeout(app):
+    import json
+    from skyborne import config, install
+    assert run('install', '--port', str(app.port), '--no-statusline').returncode == 0
+    assert 'older Skyborne' not in run('doctor', '--port', str(app.port)).stdout.decode()
+    config.ensure_home()
+    (config.home() / 'config.json').write_text(json.dumps({'approval_timeout_seconds': 120}))
+    assert 'approval_timeout_seconds changed' in run('doctor', '--port', str(app.port)).stdout.decode()
+    hooks = install.plugin_dir() / 'hooks' / 'hooks.json'
+    old = install.hooks_json(app.port)
+    old['hooks']['PermissionRequest'] = old['hooks']['PreToolUse']  # how an older Skyborne installed it
+    hooks.write_text(json.dumps(old))
+    assert 'older Skyborne' in run('doctor', '--port', str(app.port)).stdout.decode()

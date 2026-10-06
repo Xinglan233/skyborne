@@ -1,0 +1,26 @@
+{
+  "_source": "observed, run s2, path /subagent-statusline",
+  "session_id": "00000000-0000-4000-8000-000000000007",
+  "transcript_path": "/home/user/.claude/projects/-home-user-project/00000000-0000-4000-8000-000000000007.jsonl",
+  "cwd": "/home/user/project",
+  "scratchpad_dir": "/tmp/claude/-home-user-project/00000000-0000-4000-8000-000000000007/scratchpad",
+  "prompt_id": "00000000-0000-4000-8000-000000000009",
+  "columns": 144,
+  "tasks": [
+    {
+      "id": "a0000000000000001",
+      "type": "local_agent",
+      "status": "running",
+      "description": "count alpha lines",
+      "label": "count alpha lines",
+      "startTime": 1790998244687,
+      "model": "claude-haiku-4-5-20251001",
+      "contextWindowSize": 200000,
+      "tokenCount": 0,
+      "tokenSamples": [
+        0
+      ],
+      "cwd": "/home/user/project"
+    }
+  ]
+}

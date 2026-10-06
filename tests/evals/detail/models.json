@@ -1,0 +1,21 @@
+{
+ "name": "models",
+ "expect": {
+  "id": "00000000-0000-4000-8000-0000000000aa",
+  "updatedAt": 5000,
+  "agents": [
+   {
+    "id": "main",
+    "name": "Skybot",
+    "role": "Lead Agent",
+    "type": "lead",
+    "parent": null,
+    "start": 1000,
+    "end": null
+   }
+  ],
+  "steps": [],
+  "conversation": [],
+  "files": []
+ }
+}
