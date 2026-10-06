@@ -27,11 +27,11 @@ labels: bug
 - Operating system and version:
 - Browser:
 - Claude Code version (`claude --version`):
-- Skyborne version (in the folder you installed from: `git rev-parse --short HEAD`):
+- Skyborne version (`uv tool list` shows it; if you run a clone, `git rev-parse --short HEAD`):
 
 ## `skyborne doctor` output
 
-<!-- Run `.venv/bin/skyborne doctor` (on Windows, `.venv\Scripts\skyborne doctor`) and paste it. It shows your home folder as `~`; still, read it and remove anything private. -->
+<!-- Run `skyborne doctor` (in a clone: `.venv/bin/skyborne doctor`, on Windows `.venv\Scripts\skyborne doctor`) and paste it. It shows your home folder as `~`; still, read it and remove anything private. -->
 
 ```
 ```

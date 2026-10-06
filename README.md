@@ -4,6 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/ishraq21/skyborne/actions/workflows/ci.yml"><img src="https://github.com/ishraq21/skyborne/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
+  <a href="https://pypi.org/project/skyborne/"><img src="https://img.shields.io/pypi/v/skyborne" alt="PyPI version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue" alt="License: Apache 2.0"></a>
 </p>
 
@@ -109,32 +110,42 @@ The panel beside the city (`C` shows or hides it) is where you read the details 
 
 ### What you need
 
-- Python 3.11 or newer
+- Python 3.11 or newer (uv, below, gets one for you if you don't have it)
 - Claude Code
 - `curl` (already on macOS, Windows 10 or newer and most Linux systems; `skyborne doctor` checks)
 - A current browser: Chrome, Edge, Firefox or Safari
 
 ### Install
 
-Skyborne isn't on PyPI yet, so install it from this repository:
+Skyborne installs with [uv](https://docs.astral.sh/uv/), a fast installer for Python programs. If you
+don't have uv yet, install it first (then open a new terminal):
 
 ```sh
-git clone https://github.com/ishraq21/skyborne.git
-cd skyborne
-python3 -m venv .venv
-.venv/bin/pip install -e .
-.venv/bin/skyborne install
+curl -LsSf https://astral.sh/uv/install.sh | sh                               # macOS or Linux
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"   # Windows
 ```
 
-This makes a private Python environment for Skyborne (the `.venv` folder), installs Skyborne in it,
-then runs `skyborne install`, which adds Skyborne's plugin to Claude Code. That asks whether to
-add Skyborne's status line (the info line at the bottom of Claude Code); say yes to see Usage and
-Context in the city. On Windows, use `python` and `.venv\Scripts\` in place of `python3` and `.venv/bin/`.
+(`brew install uv` and `winget install --id=astral-sh.uv -e` work too.) Then:
+
+```sh
+uv tool install skyborne
+skyborne install
+```
+
+`uv tool install` puts Skyborne in a private Python environment of its own and the `skyborne` command
+on your PATH (if the command isn't found, run `uv tool update-shell` and open a new terminal).
+`skyborne install` then adds Skyborne's plugin to Claude Code. That asks whether to add Skyborne's
+status line (the info line at the bottom of Claude Code); say yes to see Usage and Context in the
+city. Use `uv tool install` as shown, not `uvx`: the status line remembers where Skyborne's Python
+lives, and `uvx` keeps it in a cache that gets cleaned out.
+
+Installed from a clone of this repository before? Run `skyborne uninstall` there first (as
+`.venv/bin/skyborne uninstall`), then follow the steps above.
 
 ### Run
 
 ```sh
-.venv/bin/skyborne
+skyborne
 ```
 
 The city opens at http://127.0.0.1:7317. Start Claude Code in another terminal and its session
@@ -143,13 +154,17 @@ start a new one.
 
 ### Update
 
-Run `git pull`, then `.venv/bin/skyborne install` again so the plugin matches the new version
-(`skyborne doctor` tells you when it's needed).
+Stop Skyborne first (`Ctrl+C` in its terminal), then:
+
+```sh
+uv tool upgrade skyborne
+skyborne install
+```
+
+The second command makes the plugin match the new version (`skyborne doctor` tells you when it's
+needed). Start Skyborne again afterwards.
 
 ## Commands
-
-Run these from the folder you installed in, as `.venv/bin/skyborne …` (or run
-`source .venv/bin/activate` first, then just `skyborne …`).
 
 | Command | What it does |
 | - | - |
@@ -158,6 +173,10 @@ Run these from the folder you installed in, as `.venv/bin/skyborne …` (or run
 | `skyborne doctor` | Checks your setup and explains any problem |
 | `skyborne record <id> --out demo.json --stand-ins` | Saves one session to a file the city can replay, with personal details scrubbed; read the text it lists before you share it |
 | `skyborne uninstall` | Removes the plugin and puts your old status line back |
+
+To remove Skyborne, run `skyborne uninstall`, then `uv tool uninstall skyborne`. Your history (prompts,
+replies and tool calls, see [Privacy](#privacy)) stays in `~/.skyborne`: delete that folder too if you
+want it gone, after `skyborne uninstall`, which needs what is in it.
 
 ## Keyboard shortcuts
 
@@ -210,17 +229,23 @@ settings, what is stored and known issues.
 ## Development
 
 ```sh
+git clone https://github.com/ishraq21/skyborne.git
+cd skyborne
+python3 -m venv .venv                             # on Windows, use `python` and `.venv\Scripts\` in place of `python3` and `.venv/bin/`
 .venv/bin/pip install -e '.[dev]'
 .venv/bin/python -m pytest                        # unit tests, reducer evals, server, import, scrub and record tests
 SKYBORNE_LIVE=1 .venv/bin/python -m pytest tests/live -s   # drives real Claude Code sessions (macOS/Linux)
 
 cd page
 npm ci && npx playwright install chromium         # once: three.js, the fonts and the test browser (Node 24)
-node build.js                                     # builds the city into skyborne/web/ (commit it) and dist/preview.html
+node build.js                                     # builds the city into skyborne/web/ and dist/preview.html (commit both)
 node dev/serve.js                                 # a preview with a fake city at http://127.0.0.1:8000/
 node dev/icons.js                                 # remakes the tab icon's PNGs after a change to src/icons/icon.svg
 node tests/smoke.js && node tests/live-smoke.js   # browser tests: the preview, then the real server
 ```
+
+This runs your checkout, not a version installed with uv: use `.venv/bin/skyborne install` and
+`.venv/bin/skyborne` for it.
 
 ## Contributing
 
