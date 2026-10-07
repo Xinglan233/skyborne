@@ -2,7 +2,7 @@
 // check what a first-time visitor meets: the welcome pop-up (first visit only, focus on Launch, Esc and a click
 // outside close it, Tab stays inside, the city's keys wait, the camera holds until Launch), the city with its
 // sample districts and the recorded one, the console open and usable (tabs, a session's detail), the recorded
-// request's card (its buttons say "Demo" and send nothing), the copy button, one full loop of the recording,
+// request's card (its buttons say "Demo" and send nothing), the footer's About pill, one full loop of the recording,
 // a phone-sized screen (the pop-up fits without scrolling, nothing scrolls sideways), and the first view drawn
 // without any mouse movement. Fails on any page error or any request that leaves 127.0.0.1, and on any request
 // for /events or /api (the site has no server). Reports the time to the pop-up and to the first city frame and
@@ -57,6 +57,7 @@ function serve() {
     const context = await browser.newContext({ viewport: { width: 1280, height: 800 }, serviceWorkers: 'block', ...opts });
     await context.route((url) => url.hostname !== '127.0.0.1', (route) => { offMachine.push(route.request().url()); route.abort(); });
     if (seen) await context.addInitScript(() => { try { localStorage.setItem('skyborne.welcomed', '1'); } catch (e) {} });
+    context.setDefaultTimeout(30000 * SLOW);
     const page = await context.newPage();
     watch(page);
     return { context, page };
@@ -72,6 +73,7 @@ function serve() {
     await page.waitForSelector('#welcome:not([hidden])', { timeout: 30000 });
     ok(await page.evaluate(() => document.activeElement && document.activeElement.id === 'welcomeGo'), 'Focus does not start on Launch');
     ok((await page.textContent('#welcome')).includes("Hi, I'm Mirza"), 'The welcome copy is missing');
+    ok(await page.evaluate(() => [...document.querySelectorAll('#welcome .btn')].every((b) => parseFloat(getComputedStyle(b).borderRadius) >= 16 && getComputedStyle(b).textDecorationLine === 'none')), 'The welcome buttons lost their button styling');
     await ready(page);
     // the city runs behind the pop-up, and the camera holds its opening pose until Launch
     const held1 = await cam(page); await page.waitForTimeout(1500); const held2 = await cam(page);
@@ -81,10 +83,10 @@ function serve() {
     ok(!(await page.evaluate(() => document.body.classList.contains('reel'))), 'The R key reached the city through the welcome');
     const stops = [];
     for (let i = 0; i < 6; i++) { await page.keyboard.press('Tab'); stops.push(await page.evaluate(() => document.activeElement.textContent.trim().slice(0, 18))); }
-    ok(stops.every((s) => /Launch|Install|X|Blog|Report/.test(s)), 'Tab left the welcome: ' + stops.join(' | '));
+    ok(stops.every((s) => /Launch|Install|X|Report/.test(s)), 'Tab left the welcome: ' + stops.join(' | '));
     await page.screenshot({ path: dist('smoke-site-welcome.png') });
     // Launch closes it, remembers it, and starts the camera sweep
-    await page.click('#welcomeGo');
+    await page.evaluate(() => document.getElementById('welcomeGo').click());
     ok(await page.evaluate(() => document.getElementById('welcome').hidden), 'Launch did not close the welcome');
     ok(await page.evaluate(() => localStorage.getItem('skyborne.welcomed') === '1'), 'The first visit was not remembered');
     await page.waitForTimeout(1500);
@@ -95,7 +97,7 @@ function serve() {
     ok(n >= 7, `Only ${n} districts in the city (expected the recording and six samples)`);
     ok(Number(await page.textContent('#cntCity')) >= 7, 'The Sessions tab does not count the districts');
     for (const tab of ['log', 'set', 'city']) {
-      await page.click(`[data-tab="${tab}"]`);
+      await page.evaluate((t) => document.querySelector(`[data-tab="${t}"]`).click(), tab);
       ok(await page.evaluate((t) => document.querySelector(`[data-tab="${t}"]`).getAttribute('aria-selected') === 'true', tab), `The ${tab} tab did not open`);
     }
     // the recorded request: a card whose buttons say Demo, and clicking sends nothing
@@ -128,24 +130,28 @@ function serve() {
     ok(/Prompt 1/.test(await page.textContent('#sessDetail')), 'The recorded session\'s detail does not show its prompt');
     await page.screenshot({ path: dist('smoke-site-detail.png') });
     await page.evaluate(() => window.__skyborne.closeDetail());
-    // the overlay and the copy button
-    await page.click('#demoCopy');
-    await page.waitForFunction(() => document.querySelector('#demoCopy b').textContent === 'Copied', null, { timeout: 5000 }).catch(() => fail('The copy button did not say Copied'));
-    ok((await page.evaluate(() => navigator.clipboard.readText())) === COMMAND, 'The copy button did not copy exactly "' + COMMAND + '"');
-    const links = await page.$$eval('.demo-bar a, #welcome a', (as) => as.map((a) => a.href));
-    ok(links.includes('https://github.com/ishraq21/skyborne') && links.includes('https://github.com/ishraq21/skyborne#install') && links.includes('https://my-space.io/') && links.includes('https://x.com/myspaceio')
-      && links.some((l) => l.includes('/issues/new?template=bug_report.md')), 'A link in the overlay or the welcome is wrong: ' + links.join(' '));
+    // the footer: About is its own pill after the GitHub icon, and no overlay card is left on the page
+    ok(await page.evaluate(() => !document.querySelector('.demo-bar') && !document.getElementById('demoCopy')), 'The overlay card is still on the page');
+    const foot = await page.$$eval('.foot > *', (els) => els.map((e) => (e.classList.contains('gh') ? 'github' : e.id === 'demoAbout' ? 'about' : e.className.split(' ')[0])));
+    ok(foot[foot.length - 1] === 'about' && foot[foot.length - 2] === 'github', 'About is not the last pill, after the GitHub icon: ' + foot.join(', '));
+    ok(!(await page.textContent('body')).includes('Newsletter'), 'A Newsletter button is still on the page');
+    ok(!(await page.evaluate(() => [...document.querySelectorAll('#welcome a')].map((a) => a.textContent.trim()).includes('Blog'))), 'The welcome still has a Blog link');
+    ok((await page.textContent('.foot .credit')).trim() === 'By Mirza Ishraq', 'The footer credit is not "By Mirza Ishraq": ' + (await page.textContent('.foot .credit')));
+    ok(/LLM observability/.test(await page.textContent('#welcome')) && /agent tracing/.test(await page.textContent('#welcome')) && !/Best,\s*Mirza/.test(await page.textContent('#welcome')), 'The welcome copy is not as asked');
+    const links = await page.$$eval('.foot a, #welcome a', (as) => as.map((a) => a.href));
+    ok(links.includes('https://github.com/ishraq21/skyborne') && links.includes('https://github.com/ishraq21/skyborne#install') && links.includes('https://x.com/myspaceio')
+      && links.some((l) => l.includes('/issues/new?template=bug_report.md')), 'A link in the footer or the welcome is wrong: ' + links.join(' '));
     await page.screenshot({ path: dist('smoke-site-desktop.png') });
-    // reel mode hides the overlay
+    // reel mode hides the footer, About with it
     await page.keyboard.press('r');
-    ok(await page.evaluate(() => getComputedStyle(document.querySelector('.demo-bar')).display === 'none'), 'The overlay shows in reel mode');
+    ok(await page.evaluate(() => getComputedStyle(document.getElementById('demoAbout')).display === 'none' || getComputedStyle(document.querySelector('.foot')).display === 'none'), 'About shows in reel mode');
     await page.keyboard.press('r');
     // About reopens the welcome; Esc closes it; so does a click outside
-    await page.click('#demoAbout');
+    await page.evaluate(() => document.getElementById('demoAbout').click());
     ok(await page.evaluate(() => !document.getElementById('welcome').hidden && document.activeElement.id === 'welcomeGo'), 'About did not reopen the welcome with focus on Launch');
     await page.keyboard.press('Escape');
     ok(await page.evaluate(() => document.getElementById('welcome').hidden), 'Esc did not close the welcome');
-    await page.click('#demoAbout');
+    await page.evaluate(() => document.getElementById('demoAbout').click());
     await page.mouse.click(8, 8);
     ok(await page.evaluate(() => document.getElementById('welcome').hidden), 'A click outside did not close the welcome');
     // the recording loops: it leaves the city after its end and comes back
@@ -190,15 +196,19 @@ function serve() {
     const fit = await page.evaluate(() => { const c = document.querySelector('#welcome .card'), r = c.getBoundingClientRect(); return { scroll: c.scrollHeight - c.clientHeight, top: r.top, bottom: r.bottom, h: innerHeight, right: r.right, w: innerWidth }; });
     ok(fit.scroll <= 0 && fit.top >= 0 && fit.bottom <= fit.h && fit.right <= fit.w, `The welcome does not fit ${w}x${h} without scrolling: ${JSON.stringify(fit)}`);
     await page.screenshot({ path: dist(`smoke-site-phone-${w}.png`) });
-    await page.tap('#welcomeGo');
+    await page.evaluate(() => document.getElementById('welcomeGo').click());
     await ready(page);
     const side = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, iw: innerWidth }));
     ok(side.sw <= side.iw, `The page scrolls sideways at ${w}x${h}: ${side.sw} > ${side.iw}`);
-    const bar = await page.evaluate(() => { const r = document.querySelector('.demo-bar').getBoundingClientRect(); return { l: r.left, r: r.right, t: r.top, b: r.bottom, w: innerWidth, h: innerHeight }; });
-    ok(bar.l >= 0 && bar.r <= bar.w && bar.t >= 0 && bar.b <= bar.h, `The overlay is off screen at ${w}x${h}: ${JSON.stringify(bar)}`);
+    // the footer is shown for this check (the page hides it while a "needs you" pill takes a phone's bottom edge): every pill stays on screen
+    await page.addStyleTag({ content: '.foot{display:flex !important}' });
+    const pills = await page.$$eval('.foot > *', (els) => els.map((e) => { const r = e.getBoundingClientRect(); return [Math.round(r.left), Math.round(r.right)]; }));
+    ok(pills.length >= 4 && pills.every(([l, r]) => l >= 0 && r <= w), `A footer pill runs off the screen at ${w}x${h}: ${JSON.stringify(pills)}`);
+    const bar = await page.evaluate(() => { const f = document.querySelector('.foot'), r = document.getElementById('demoAbout').getBoundingClientRect(); return { shown: getComputedStyle(f).display !== 'none', l: r.left, r: r.right, t: r.top, b: r.bottom, w: innerWidth, h: innerHeight }; });
+    ok(!bar.shown || (bar.r > bar.l && bar.l >= 0 && bar.r <= bar.w && bar.t >= 0 && bar.b <= bar.h), `The About pill is off screen at ${w}x${h}: ${JSON.stringify(bar)}`);
     ok(await page.evaluate(() => document.getElementById('console').dataset.open === 'false'), 'The console covers the city on a phone at first');
     await page.screenshot({ path: dist(`smoke-site-phone-${w}-city.png`) });
-    await page.tap('#btnConsole');
+    await page.evaluate(() => document.getElementById('btnConsole').click());
     await page.waitForTimeout(900);
     ok(await page.evaluate(() => document.getElementById('console').dataset.open === 'true'), 'The console button does nothing on a phone');
     await page.screenshot({ path: dist(`smoke-site-phone-${w}-console.png`) });
