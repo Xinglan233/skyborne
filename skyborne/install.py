@@ -13,6 +13,7 @@ import hashlib
 import json
 import os
 import pathlib
+import re
 import shlex
 import shutil
 import subprocess
@@ -91,6 +92,18 @@ def statusline_command(port):
     return subprocess.list2cmdline(args) if os.name == 'nt' else shlex.join(args)
 
 
+# exactly what statusline_command writes: a quoted or plain Python path, then `-m skyborne statusline`, then
+# maybe `--port N`. Anything else (a pipe, a redirect, a chained command, a hand edit) isn't treated as ours.
+_STATUSLINE = re.compile(r"""(?P<exe>"[^"]+"|'[^']+'|[^\s"'|&;<>()$`]+) -m skyborne statusline(?: --port (?P<port>\d+))?""")
+
+
+def statusline_port(command):
+    """The port a Skyborne status line command sends to (the default when it has no --port), or None when
+    the command isn't exactly the one Skyborne writes."""
+    m = _STATUSLINE.fullmatch(command) if isinstance(command, str) else None
+    return None if not m else int(m['port']) if m['port'] else config.DEFAULT_PORT
+
+
 def _atomic_write(path: pathlib.Path, data: bytes, mode=None):
     fd, tmp = tempfile.mkstemp(dir=path.parent, prefix='.' + path.name + '.', suffix='.tmp')
     try:
@@ -159,6 +172,8 @@ def install_statusline(port=config.DEFAULT_PORT):
     if existed:
         backup.write_bytes(raw)
     previous, had_key = data.get('statusLine'), 'statusLine' in data
+    if isinstance(previous, dict) and statusline_port(previous.get('command')) is not None:
+        previous, had_key = None, False  # a leftover Skyborne one: running it as "the previous" would loop forever
     data['statusLine'] = {'type': 'command', 'command': statusline_command(port)}
     new = (json.dumps(data, indent=2, ensure_ascii=False) + '\n').encode('utf-8')
     settings.parent.mkdir(parents=True, exist_ok=True)
@@ -168,6 +183,44 @@ def install_statusline(port=config.DEFAULT_PORT):
                            'written_sha256': _sha(new)}
     _save_state(state)
     return previous
+
+
+def set_statusline_port(port=config.DEFAULT_PORT):
+    """Make the status line we installed send to `port`, changing only the port in its command (the rest of
+    settings.json, and the way uninstall restores it, stay as they are). Returns a sentence saying what was
+    done, or None when the status line already sends there."""
+    state = _load_state()
+    s = state.get('statusline')
+    if not s:
+        return None
+    settings = pathlib.Path(s['settings'])
+    if not settings.exists():
+        return (f'{settings} no longer exists, so the status line was left alone. To add it again, run '
+                '`skyborne uninstall` and then `skyborne install`.')
+    try:
+        current = settings.read_bytes()
+        data = json.loads(current)
+    except (OSError, ValueError):
+        raise InstallError(f'Could not read {settings}, so the status line was left as it is.')
+    line = data.get('statusLine') if isinstance(data, dict) else None
+    command = line.get('command') if isinstance(line, dict) else None
+    m = _STATUSLINE.fullmatch(command) if isinstance(command, str) else None
+    if m is None or not isinstance(line, dict):
+        return f'The status line in {settings} is not Skyborne\'s any more, so it was left alone.'
+    old = int(m['port']) if m['port'] else config.DEFAULT_PORT
+    if old == port:
+        return None
+    command = m['exe'] + ' -m skyborne statusline'
+    line['command'] = command if port == config.DEFAULT_PORT else f'{command} --port {port}'
+    new = (json.dumps(data, indent=2, ensure_ascii=False) + '\n').encode('utf-8')
+    try:
+        _atomic_write(settings, new, settings.stat().st_mode & 0o7777)
+    except OSError as e:
+        raise InstallError(f'Could not update {settings} ({type(e).__name__}), so the status line was left as it is.')
+    if _sha(current) == s['written_sha256']:  # still as we wrote it: uninstall can keep restoring it exactly
+        s['written_sha256'] = _sha(new)
+        _save_state(state)
+    return f'The status line now sends to port {port} (it sent to port {old}).'
 
 
 def uninstall_statusline():
@@ -217,4 +270,5 @@ def uninstall_plugin():
 def previous_statusline_command():
     """The status line command that was there before ours, if any (ours runs it too)."""
     prev = (_load_state().get('statusline') or {}).get('previous')
-    return prev.get('command') if isinstance(prev, dict) and isinstance(prev.get('command'), str) else None
+    command = prev.get('command') if isinstance(prev, dict) else None
+    return command if isinstance(command, str) and statusline_port(command) is None else None  # never our own

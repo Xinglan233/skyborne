@@ -13,6 +13,10 @@ notes are the version's section here.
 - A new Settings section lists the `config.json` keys with their defaults, the command-line options, which city settings your browser keeps and the environment variables.
 - The Install section points at `uv tool install skyborne`.
 
+**Changing the port**
+- `skyborne install --port N` now moves Skyborne's status line to the new port too. Before, it kept sending to the old port, so Usage and Context stayed empty.
+- `skyborne doctor` warns when the status line and the port you check don't match.
+
 ## [0.1.0] - 2026-10-07
 
 First public release. See the [v0.1.0 release page](https://github.com/ishraq21/skyborne/releases/tag/v0.1.0).

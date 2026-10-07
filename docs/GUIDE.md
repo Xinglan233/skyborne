@@ -23,7 +23,8 @@ open don't.
 It then asks whether to also install Skyborne's status line, which the console's Usage and Context
 numbers come from (cost, context use and rate limits). Saying yes backs up your `settings.json` to `~/.skyborne/backups/`, changes only its
 `statusLine` key, and keeps showing your previous status line if you had one. `--statusline` and
-`--no-statusline` answer without asking; `--port N` points the plugin at another port.
+`--no-statusline` answer without asking; `--port N` points the plugin, and the status line if you added
+it, at another port (`--no-statusline` leaves an existing status line as it is).
 
 After updating Skyborne, run `skyborne install` again so the plugin matches the new version
 (`skyborne doctor` says when it's needed). Plugins from before approvals came in don't let the city
@@ -150,10 +151,9 @@ Start with `skyborne doctor`. It checks everything below that it can and says in
   new terminal.
 - **Port 7317 is taken.** Start with `skyborne --port 7400` (any free port), run
   `skyborne install --port 7400` so the plugin sends events to the same place, then start a new Claude
-  Code session. From then on run `skyborne doctor --port 7400` too: without it, the doctor checks 7317.
-  If you added the status line, run `skyborne uninstall` first and then `skyborne install --port 7400`:
-  an existing status line keeps sending to the old port. The city's address changes too
-  (`http://127.0.0.1:7400/`), and its settings start fresh there.
+  Code session. `skyborne install --port` moves the status line to the new port as well, if you added it.
+  From then on run `skyborne doctor --port 7400` too: without it, the doctor checks 7317. The city's
+  address changes too (`http://127.0.0.1:7400/`), and its settings start fresh there.
 - **No "Needs you" card appears when Claude asks permission, or the doctor says the plugin is from an
   older Skyborne.** Run `skyborne install` again, then start a new Claude Code session. Do this after
   every update, and after you change `approval_timeout_seconds`.

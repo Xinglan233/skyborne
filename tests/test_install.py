@@ -177,3 +177,131 @@ def test_skyborne_folder_and_backups_are_private():
     install.install_statusline()
     assert (config.home().stat().st_mode & 0o777) == 0o700
     assert ((config.home() / 'backups').stat().st_mode & 0o777) == 0o700
+
+
+def test_changing_the_port_moves_the_status_line_too_and_uninstall_still_restores_exactly():
+    raw = b'{\n    "model": "opus"\n}\n'
+    write_settings(None, raw)
+    before = sha(settings())
+    install.install_statusline()
+    command = lambda: json.loads(settings().read_text())['statusLine']['command']
+    assert install.statusline_port(command()) == config.DEFAULT_PORT and '--port' not in command()
+    assert install.set_statusline_port(7400) == 'The status line now sends to port 7400 (it sent to port 7317).'
+    assert command().endswith('-m skyborne statusline --port 7400') and install.statusline_port(command()) == 7400
+    assert install.set_statusline_port(7400) is None  # already there
+    assert 'port 7401 (it sent to port 7400)' in install.set_statusline_port(7401)
+    assert command().count('--port') == 1  # replaced, not stacked
+    install.set_statusline_port(config.DEFAULT_PORT)
+    assert '--port' not in command()
+    install.set_statusline_port(7400)
+    assert json.loads(settings().read_text())['model'] == 'opus'
+    assert 'exactly' in install.uninstall_statusline()
+    assert sha(settings()) == before
+
+
+def test_changing_the_port_after_the_person_edited_settings_keeps_their_edit():
+    write_settings({'theme': 'dark'})
+    install.install_statusline()
+    data = json.loads(settings().read_text())
+    data['theme'] = 'light'
+    settings().write_text(json.dumps(data))
+    install.set_statusline_port(7400)
+    now = json.loads(settings().read_text())
+    assert now['theme'] == 'light' and now['statusLine']['command'].endswith('--port 7400')
+    assert 'only the statusLine key' in install.uninstall_statusline()
+    assert json.loads(settings().read_text()) == {'theme': 'light'}
+
+
+def test_changing_the_port_leaves_a_status_line_that_is_not_ours_alone():
+    write_settings({'theme': 'dark'})
+    install.install_statusline()
+    data = json.loads(settings().read_text())
+    data['statusLine']['command'] = 'echo theirs'
+    settings().write_text(json.dumps(data))
+    before = settings().read_bytes()
+    assert 'not Skyborne' in install.set_statusline_port(7400)
+    assert settings().read_bytes() == before
+
+
+def test_changing_the_port_without_a_status_line_does_nothing():
+    assert install.set_statusline_port(7400) is None
+    assert not settings().exists()
+
+
+@pytest.mark.parametrize('command, port', [
+    ('/x/python -m skyborne statusline', 7317), ('/x/python -m skyborne statusline --port 7400', 7400),
+    ('"C:\\Program Files\\Python\\python.exe" -m skyborne statusline --port 8000', 8000),
+    ("'/Users/me/My Dir/python' -m skyborne statusline --port 7400", 7400),
+    ('echo mine', None), (None, None), ({'a': 1}, None),
+    # anything but the exact command Skyborne writes is somebody's own, and is never rewritten
+    ('/x/python -m skyborne statusline --port 7400 | head -1', None), ('/x/python -m skyborne statusline 2>/dev/null', None),
+    ('/x/python -m skyborne statusline; true', None), ('/x/python -m skyborne statusline --port=7400', None),
+    ('echo hi; /x/python -m skyborne statusline', None), ('/x/python -m skyborne statusline --port 7400 --other', None)])
+def test_statusline_port_reads_the_port_from_the_command(command, port):
+    assert install.statusline_port(command) == port
+
+
+def test_a_wrapped_status_line_is_never_rewritten():
+    install.install_statusline()
+    data = json.loads(settings().read_text())
+    data['statusLine']['command'] = '/x/python -m skyborne statusline --port 7400 | head -1'  # the person wrapped it
+    settings().write_text(json.dumps(data))
+    before = settings().read_bytes()
+    assert 'not Skyborne' in install.set_statusline_port(7317)
+    assert settings().read_bytes() == before
+
+
+def test_a_leftover_skyborne_status_line_is_not_remembered_as_the_previous_one():
+    """Running our own command as 'the previous status line' would make it run itself again and again."""
+    ours = install.statusline_command(7400)
+    write_settings({'statusLine': {'type': 'command', 'command': ours}})
+    original = sha(settings())
+    assert install.install_statusline() is None
+    assert install.previous_statusline_command() is None
+    install.uninstall_statusline()
+    assert sha(settings()) == original  # put back as it was, not as a "previous status line" to run
+    # and a state written by an older build, with our own command as "previous", is ignored too
+    write_settings({'theme': 'dark'})
+    install.install_statusline()
+    state = install._load_state()
+    state['statusline']['previous'] = {'type': 'command', 'command': ours}
+    install._save_state(state)
+    assert install.previous_statusline_command() is None
+
+
+def test_changing_the_port_when_settings_json_is_gone_is_not_an_error():
+    install.install_statusline()
+    settings().unlink()
+    note = install.set_statusline_port(7400)
+    assert 'no longer exists' in note and 'skyborne uninstall' in note
+    assert not settings().exists()
+
+
+def test_changing_the_port_when_settings_json_is_broken_is_an_error_and_leaves_it_alone():
+    install.install_statusline()
+    settings().write_text('{not json')
+    with pytest.raises(install.InstallError):
+        install.set_statusline_port(7400)
+    assert settings().read_text() == '{not json'
+
+
+@pytest.mark.skipif(os.name == 'nt', reason='file modes')
+def test_changing_the_port_keeps_the_file_permissions():
+    write_settings({'theme': 'dark'})
+    os.chmod(settings(), 0o600)
+    install.install_statusline()
+    install.set_statusline_port(7400)
+    assert (settings().stat().st_mode & 0o777) == 0o600
+
+
+def test_a_windows_style_command_is_moved_too():
+    install.install_statusline()
+    command = '"C:\\Program Files\\Python 3.12\\python.exe" -m skyborne statusline'  # how list2cmdline writes it on Windows
+    data = json.loads(settings().read_text())
+    data['statusLine']['command'] = command
+    settings().write_text(json.dumps(data))
+    assert install.statusline_port(command) == config.DEFAULT_PORT
+    install.set_statusline_port(7400)
+    assert json.loads(settings().read_text())['statusLine']['command'] == command + ' --port 7400'
+    install.set_statusline_port(config.DEFAULT_PORT)
+    assert json.loads(settings().read_text())['statusLine']['command'] == command

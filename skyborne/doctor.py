@@ -122,7 +122,11 @@ def checks(port=config.DEFAULT_PORT):
 
     command = ((user.get('statusLine') or {}) if isinstance(user.get('statusLine'), dict) else {}).get('command', '')
     if 'skyborne' in str(command) and 'statusline' in str(command):
-        out.append((OK, 'The status line sends cost, context and rate limits to Skyborne.'))
+        sent_to = install.statusline_port(command)
+        if sent_to is not None and sent_to != port:
+            out.append((WARN, f'The status line sends to port {sent_to}, not {port}. Run `skyborne install --port {port}` to change it.'))
+        else:
+            out.append((OK, 'The status line sends cost, context and rate limits to Skyborne.'))
     else:
         out.append((WARN, 'The status line is not installed (optional: it adds cost, context and rate limits). Run `skyborne install` to add it.'))
 

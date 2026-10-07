@@ -100,3 +100,27 @@ def test_doctor_copes_with_a_settings_file_that_has_the_wrong_shape(app):
     (config.claude_dir() / 'settings.json').write_text(json.dumps({'enabledPlugins': ['skyborne']}))
     r = run('doctor', '--port', str(app.port))
     assert r.returncode in (0, 1) and b'Traceback' not in r.stderr
+
+
+def test_install_with_a_new_port_moves_the_status_line_and_the_doctor_notices_when_it_doesnt(app):
+    from skyborne import config
+    assert run('install', '--port', str(app.port), '--statusline').returncode == 0
+    settings = config.claude_dir() / 'settings.json'
+    assert '--port' in json.loads(settings.read_text())['statusLine']['command']
+    assert 'sends cost, context and rate limits' in run('doctor', '--port', str(app.port)).stdout.decode()
+    other = app.port + 1
+    out = run('doctor', '--port', str(other)).stdout.decode()
+    assert f'The status line sends to port {app.port}, not {other}.' in out
+    r = run('install', '--port', str(other))
+    assert f'The status line now sends to port {other}' in r.stdout.decode()
+    assert json.loads(settings.read_text())['statusLine']['command'].endswith(f'--port {other}')
+    assert 'The status line sends to port' not in run('doctor', '--port', str(other)).stdout.decode()
+    r = run('install', '--port', str(other))
+    assert r.returncode == 0 and 'The status line is already set up.' in r.stdout.decode()
+    r = run('install', '--port', str(app.port), '--no-statusline')  # an explicit "leave it alone"
+    assert r.returncode == 0 and 'Status line left as it was.' in r.stdout.decode()
+    assert json.loads(settings.read_text())['statusLine']['command'].endswith(f'--port {other}')
+    settings.unlink()
+    r = run('install', '--port', str(app.port))  # settings.json deleted since: say so, don't fail the install
+    assert r.returncode == 0 and 'no longer exists' in r.stdout.decode()
+

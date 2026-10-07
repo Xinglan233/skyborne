@@ -43,7 +43,14 @@ def _install(args):
     print(f'Installed the Claude Code plugin in {target}.')
     print('New Claude Code sessions send their events to Skyborne. Sessions already open are not affected.')
     if install._load_state().get('statusline'):
-        print('The status line is already set up.')
+        if args.statusline is False:
+            print('Status line left as it was.')
+            return 0
+        try:
+            print(install.set_statusline_port(args.port) or 'The status line is already set up.')
+        except install.InstallError as e:
+            print(e)
+            return 1
         return 0
     want = args.statusline if args.statusline is not None else _ask(
         "Also set Claude Code's status line to Skyborne's? It adds cost, context and rate limits. "
