@@ -27,7 +27,7 @@ labels: bug
 - Operating system and version:
 - Browser:
 - Claude Code version (`claude --version`):
-- Skyborne version (`uv tool list` shows it; if you run a clone, `git rev-parse --short HEAD`):
+- Skyborne version: run `uv tool list` and copy the line that starts `skyborne v` (or the git commit, `git rev-parse --short HEAD`, if you installed from source):
 
 ## `skyborne doctor` output
 

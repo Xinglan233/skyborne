@@ -1,7 +1,7 @@
 # Skyborne guide
 
 The details behind the [README](../README.md): installing, the city and its console, approving from
-the city, recordings, what is stored, and known issues.
+the city, recordings, what is stored, troubleshooting, settings and known issues.
 
 ## Platforms
 
@@ -14,7 +14,8 @@ either way.
 
 ## Install
 
-`skyborne install` copies Skyborne's Claude Code plugin into `~/.claude/skills/skyborne`
+Install Skyborne with `uv tool install skyborne` (the [README](../README.md#install) has the steps,
+including how to get uv), then run `skyborne install`, which copies Skyborne's Claude Code plugin into `~/.claude/skills/skyborne`
 (`$CLAUDE_CONFIG_DIR/skills/skyborne` if you set that), where Claude Code loads it as
 `skyborne@skills-dir`. Sessions you start after that send their events to Skyborne; sessions already
 open don't.
@@ -133,7 +134,74 @@ from the session's transcripts when Skyborne starts again.
 ## Uninstalling
 
 `skyborne uninstall` puts `settings.json` back byte for byte if you haven't changed it since. If you
-have, it restores only the `statusLine` key and keeps your other changes.
+have, it restores only the `statusLine` key and keeps your other changes. Then `uv tool uninstall
+skyborne` removes the program itself. Your history stays in `~/.skyborne`; delete that folder too if you
+want it gone, after `skyborne uninstall`, which needs what is in it.
+
+## Troubleshooting
+
+Start with `skyborne doctor`. It checks everything below that it can and says in plain words what to do.
+
+- **The city is empty, or my session isn't in it.** Only sessions started *after* `skyborne install`
+  send events, so start a new Claude Code session. Claude Code also runs hooks only after you accept
+  its folder trust prompt. An old session may be hidden: see **Show past sessions** and the live window
+  under [Using the city](#using-the-city).
+- **`skyborne: command not found`** (on Windows, "not recognized"). Run `uv tool update-shell` and open a
+  new terminal.
+- **Port 7317 is taken.** Start with `skyborne --port 7400` (any free port), run
+  `skyborne install --port 7400` so the plugin sends events to the same place, then start a new Claude
+  Code session. From then on run `skyborne doctor --port 7400` too: without it, the doctor checks 7317.
+  If you added the status line, run `skyborne uninstall` first and then `skyborne install --port 7400`:
+  an existing status line keeps sending to the old port. The city's address changes too
+  (`http://127.0.0.1:7400/`), and its settings start fresh there.
+- **No "Needs you" card appears when Claude asks permission, or the doctor says the plugin is from an
+  older Skyborne.** Run `skyborne install` again, then start a new Claude Code session. Do this after
+  every update, and after you change `approval_timeout_seconds`.
+- **Doctor reports hooks or the plugin turned off.** Something in your Claude Code settings blocks them:
+  `disableAllHooks`, `enabledPlugins` set to false for Skyborne, or (on managed machines)
+  `allowManagedHooksOnly` or `strictKnownMarketplaces`. The doctor names which one. Skyborne
+  doesn't change those for you. It reads only your own `settings.json` and the managed settings file,
+  so a setting in a project's `.claude/settings.json` or `settings.local.json` that turns the plugin
+  off won't show up in its output.
+- **Usage and Context show "—".** They come from Skyborne's status line. If you haven't added it, run
+  `skyborne install --statusline`. If you have, Context stays "—" until a live session has reported.
+- **A card says "Answer in the terminal".** The request waited out its time (10 minutes by default),
+  or it is a question or a plan, which need more than yes or no. The dialog is still open in the
+  terminal.
+
+If it's still wrong, [open an issue](https://github.com/ishraq21/skyborne/issues/new/choose) with the
+doctor's output.
+
+## Settings
+
+Four places hold settings.
+
+**`~/.skyborne/config.json`** (you create it; unknown keys are ignored):
+
+| Key | Default | What it does |
+| - | - | - |
+| `retention_days` | `30` | Session data older than this many days is deleted. Must be a whole number above 0. |
+| `approval_timeout_seconds` | `600` | How long a permission request waits for an answer from the city before it is left to the terminal. Kept between 30 and 3600. Run `skyborne install` after changing it. |
+
+**Command-line options:**
+
+| Option | Default | What it does |
+| - | - | - |
+| `skyborne --port N` | `7317` | The port the city listens on (`127.0.0.1` only). Give `skyborne install` and `skyborne doctor` the same `--port`. |
+| `skyborne --no-open` | opens a browser | Starts without opening the city. |
+| `skyborne --verbose` | off | Logs every event's name and short session id. |
+| `skyborne import --days N` | `7` | How far back to look for past sessions. |
+
+**In the city (Settings tab):** these are kept by your browser, for the address you opened (another browser,
+or the city on another port, starts with the defaults): your name on City Hall, the live window (15
+minutes, 30 minutes, 1 hour or 3 hours; 30 by default), desktop alerts, time of day, miniature lens, bot
+name tags and safe to film. Sound, sample districts and playing a recording are not kept: a fresh page starts
+without them.
+
+**Environment variables**, for the unusual case. `SKYBORNE_HOME` moves Skyborne's whole folder (the
+default is `~/.skyborne`), and `CLAUDE_CONFIG_DIR` points Skyborne at a different Claude Code folder, the
+one Claude Code itself uses when it's set. Set them the same way for every `skyborne` command and for
+Claude Code, or the pieces won't find each other.
 
 ## What is stored
 
