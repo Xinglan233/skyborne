@@ -95,11 +95,13 @@ function applyDocs(raw) {
 
 // ---------------- sample districts (Settings → Show sample districts) ----------------
 const samples = { docs: [], timer: null, state: null };
+const SAMPLE_TOOL = { bash: 'Bash', edit: 'Edit', read: 'Read', search: 'Grep', web: 'WebSearch', task: 'TodoWrite' };
+let sampleSteps = 0;
 function startSamples() {
   if (samples.timer) return;
   const r = rng(Date.now() % 100000);
   const now = Date.now();
-  const towns = [['atlas-api', 'Skybot'], ['pixel-forge', 'Skybot'], ['dataport', 'Skybot'], ['skyline-ui', 'Skybot']];
+  const towns = [['atlas-api', 'Skybot'], ['pixel-forge', 'Skybot'], ['dataport', 'Skybot'], ['skyline-ui', 'Skybot'], ...(DEMO?.towns || [])];
   const lines = {
     bash: ['$ npm test', '$ cargo build --release', '$ pytest -q', '$ git diff --stat'], edit: ['Editing router.ts', 'Editing schema.sql', 'Editing App.tsx', 'Editing main.rs'],
     read: ['Reading README.md', 'Reading config.yaml', 'Reading auth.py'], search: ['Searching handleLogin', 'Searching TODO', 'Searching useState'],
@@ -116,7 +118,8 @@ function startSamples() {
     const t = Date.now();
     for (const s of samples.state) {
       const lead = s.agents[0];
-      const log = (who, kind, text) => { s.feed.unshift({ ts: t, agent: who.name, agentId: who.id, kind, text }); s.feed.length = Math.min(s.feed.length, 50); };
+      // on the demo site a sample's steps carry an id, a tool and a duration, so its detail has a timeline to show
+      const log = (who, kind, text) => { s.feed.unshift({ ts: t, agent: who.name, agentId: who.id, kind, text, ...(DEMO && SAMPLE_TOOL[kind] ? { toolUseId: 'smp-' + (++sampleSteps), tool: SAMPLE_TOOL[kind], durationMs: 300 + Math.floor(r() * 4200) } : {}) }); s.feed.length = Math.min(s.feed.length, 50); };
       s.tokens += 2_000 + r() * 30_000;
       if (lead.waiting) { if (r() < 0.25) { lead.waiting = false; lead.kind = 'bash'; lead.activity = '$ npm run deploy'; log(lead, 'bash', lead.activity); } }
       else if (lead.status === 'done') { if (r() < 0.2) { lead.status = 'idle'; lead.kind = 'idle'; lead.activity = 'Waiting for the next prompt'; } }

@@ -17,6 +17,8 @@ working, who's stuck and who needs you, and approve or deny their requests right
 Everything stays on your computer: no account, no cloud, and no telemetry (nothing is sent back to
 anyone).
 
+**Try it in your browser: [skyborne.dev](https://skyborne.dev).** It plays a recorded session in the city, so there is nothing to install.
+
 > **Status: early.**
 
 <a href="docs/images/city-dusk.jpg"><img src="docs/images/city-dusk.jpg" alt="The Skyborne city at dusk: floating districts around City Hall, a Needs you card asking to approve a command, and the console listing every session"></a>
@@ -243,6 +245,7 @@ node build.js                                     # builds the city into skyborn
 node dev/serve.js                                 # a preview with a fake city at http://127.0.0.1:8000/
 node dev/icons.js                                 # remakes the tab icon's PNGs after a change to src/icons/icon.svg
 node tests/smoke.js && node tests/live-smoke.js   # browser tests: the preview, then the real server
+node build.js --site && node tests/site-smoke.js  # the demo site (page/site, not committed) and its test
 ```
 
 This runs your checkout, not a version installed with uv: use `.venv/bin/skyborne install` and
