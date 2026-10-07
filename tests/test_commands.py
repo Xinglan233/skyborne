@@ -16,7 +16,8 @@ def run(*args, stdin=b'', env=None):
 
 def test_version_prints_the_package_version_without_creating_data(fake_home):
     r = run('--version')
-    assert (r.returncode, r.stdout, r.stderr) == (0, f'skyborne {__version__}\n'.encode(), b'')
+    # a printed line ends in \r\n on Windows: compare with the platform's line ending taken out
+    assert (r.returncode, r.stdout.replace(b'\r\n', b'\n'), r.stderr) == (0, f'skyborne {__version__}\n'.encode(), b'')
     assert list(fake_home.iterdir()) == []
 
 
