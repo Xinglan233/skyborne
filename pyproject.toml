@@ -29,6 +29,7 @@ Homepage = "https://github.com/ishraq21/skyborne"
 Documentation = "https://github.com/ishraq21/skyborne/blob/main/docs/GUIDE.md"
 Source = "https://github.com/ishraq21/skyborne"
 Issues = "https://github.com/ishraq21/skyborne/issues"
+Changelog = "https://github.com/ishraq21/skyborne/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]

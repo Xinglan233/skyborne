@@ -16,7 +16,12 @@ does the rest, using PyPI trusted publishing (no API tokens anywhere).
 
 1. Change the version in **both** `pyproject.toml` and `skyborne/__init__.py` (the workflow fails if
    they differ, or if the tag isn't `v` plus that version). Update the README if the install steps
-   changed: PyPI shows the README as it is at the tag, and a published version can't be edited.
+   changed: PyPI shows the README as it is at the tag, and a published version can't be edited. In
+   [CHANGELOG.md](../CHANGELOG.md), rename `[Unreleased]` to `[X.Y.Z] - date` (and add a fresh empty
+   `[Unreleased]` above it). Write it for someone using Skyborne, in this shape: a bold feature name on
+   its own line, a bulleted list of what changed under it, no section headers. If there is a real gap a
+   user would hit, end with one more item starting `Known gap:` and a link to its issue; leave it out
+   when there's nothing to flag.
 2. Merge to `main` and wait for CI to be green.
 3. **Dry run**: Actions, **Release**, **Run workflow** on `main`. It runs all of CI, builds the commit as
    `X.Y.Z.devN` and publishes it to TestPyPI. Check the page at <https://test.pypi.org/project/skyborne/>
@@ -38,6 +43,7 @@ does the rest, using PyPI trusted publishing (no API tokens anywhere).
    The workflow runs all of CI, builds, then waits for you to approve the `pypi` environment (Actions,
    the run, **Review deployments**). Approve it, and the package is on PyPI a minute later.
 5. From a clean folder, check `uv tool install skyborne` and `uvx skyborne --help`, then create the
-   GitHub Release for the tag.
+   GitHub Release for the tag, with that version's section of CHANGELOG.md as its notes, followed by
+   a link to the PyPI page.
 
 A version on PyPI can never be replaced or reused. If something is wrong, publish a new version.

@@ -84,7 +84,8 @@ These come from [CLAUDE.md](CLAUDE.md), which is the full list.
 
 ## Pull request checklist
 
-The same list is in the pull request template.
+The same list is in the pull request template, which also asks why you made the change, what changed
+and how you tested it.
 
 - [ ] It keeps the three promises: Claude Code only, local only, no telemetry or cloud.
 - [ ] I opened an issue first if this is a new feature.
@@ -93,6 +94,8 @@ The same list is in the pull request template.
       `page/dist/preview.html`, and `node tests/smoke.js && node tests/live-smoke.js` pass.
 - [ ] I checked the city, the console, reel mode, Safe to film, sample districts and renaming still work.
 - [ ] I updated the README and docs where behaviour changed.
+- [ ] I added a line under `[Unreleased]` in [CHANGELOG.md](CHANGELOG.md) if users would notice the
+      change. Plain words, written for someone using Skyborne; the maintainer tidies the wording at release.
 - [ ] I checked any Claude Code field or event I used against the docs or a real payload.
 - [ ] No real session data, secrets or personal paths are in the diff.
 
