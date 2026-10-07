@@ -8,6 +8,8 @@ notes are the version's section here.
 
 ## [Unreleased]
 
+- `skyborne --version` prints the installed Skyborne version and exits.
+
 **Guide: troubleshooting and settings**
 - A new Troubleshooting section covers the common problems (an empty city, a taken port, no "Needs you" card, Usage and Context showing "—"), starting with `skyborne doctor`.
 - A new Settings section lists the `config.json` keys with their defaults, the command-line options, which city settings your browser keeps and the environment variables.
